@@ -1,9 +1,3 @@
 {
-  "window": {
-    "navigationBarBackgroundColor": "#FAFAFA",
-    "navigationBarTitleText": "瑞哥Rss阅读器",
-    "navigationBarTextStyle": "black",
-    "backgroundTextStyle": "dark",
-    "backgroundColor": "#f9f9f9"
-  }
+  "navigationBarTitleText": "瑞哥工具箱"
 }

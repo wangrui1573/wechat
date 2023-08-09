@@ -1,3 +1,4 @@
+<!-- pages/ip/ip.wxml -->
 <view class="container">
   <view class="input-container">
     <text class="input-label">IP地址：</text>
@@ -9,4 +10,32 @@
   </view>
   <button class="calculate-button" bindtap="calculateRange">计算IP地址段</button>
   <view class="result">{{ ipRange }}</view>
+</view>
+
+<!-- 底部导航栏 -->
+<view class="bottom-nav">
+  <navigator class="nav-item" url="/pages/rss/index">
+    <view class="nav-icon">
+      <icon type="search"></icon>
+    </view>
+    <view class="nav-text">RSS阅读器</view>
+  </navigator>
+  <navigator class="nav-item" url="/pages/ip/ip">
+    <view class="nav-icon">
+      <icon type="circle"></icon>
+    </view>
+    <view class="nav-text">小工具</view>
+  </navigator>
+  <navigator class="nav-item" url="/pages/tools/ip">
+    <view class="nav-icon">
+      <icon type="download"></icon>
+    </view>
+    <view class="nav-text">小工具2</view>
+  </navigator>
+  <navigator class="nav-item" url="/pages/my/index">
+    <view class="nav-icon">
+      <icon type="info"></icon>
+    </view>
+    <view class="nav-text">我的</view>
+  </navigator>
 </view>

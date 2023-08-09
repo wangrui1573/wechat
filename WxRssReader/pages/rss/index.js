@@ -15,7 +15,7 @@ Page({
           path: '/pages/rss/list'
         }]
     },{
-      title: 'IP计算器',
+      title: '常用工具',
       content: [
         {
           name: 'IP计算器',

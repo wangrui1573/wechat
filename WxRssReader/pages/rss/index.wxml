@@ -1,8 +1,6 @@
-<!--pages/rss/index.wxml-->
+<!-- pages/rss/index.wxml -->
 <view class="container">
-
   <image class="logo" src="https://avatars.githubusercontent.com/u/42831156?v=4"></image>
-
   <block wx:for="{{ list }}" wx:for-item="group" wx:key="title">
     <view class="zan-panel-title">{{ group.title }}</view>
     <view class="zan-panel">
@@ -12,5 +10,32 @@
       </navigator>
     </view>
   </block>
-  
+
+  <!-- 底部导航栏 -->
+  <view class="bottom-nav">
+    <navigator class="nav-item" url="/pages/rss/index">
+      <view class="nav-icon">
+        <icon type="search"></icon>
+      </view>
+      <view class="nav-text">RSS阅读器</view>
+    </navigator>
+    <navigator class="nav-item" url="/pages/ip/ip">
+      <view class="nav-icon">
+        <icon type="circle"></icon>
+      </view>
+      <view class="nav-text">小工具</view>
+    </navigator>
+    <navigator class="nav-item" url="/pages/tools/ip">
+      <view class="nav-icon">
+        <icon type="download"></icon>
+      </view>
+      <view class="nav-text">小工具2</view>
+    </navigator>
+    <navigator class="nav-item" url="/pages/my/index">
+      <view class="nav-icon">
+        <icon type="info"></icon>
+      </view>
+      <view class="nav-text">我的</view>
+    </navigator>
+  </view>
 </view>

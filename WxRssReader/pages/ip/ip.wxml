@@ -1,0 +1,12 @@
+<view class="container">
+  <view class="input-container">
+    <text class="input-label">IP地址：</text>
+    <input class="input-box" placeholder="请输入IP地址" bindinput="handleInput" data-key="ipAddress"></input>
+  </view>
+  <view class="input-container">
+    <text class="input-label">掩码长度：</text>
+    <input class="input-box" placeholder="请输入掩码长度" bindinput="handleInput" data-key="subnetMask"></input>
+  </view>
+  <button class="calculate-button" bindtap="calculateRange">计算IP地址段</button>
+  <view class="result">{{ ipRange }}</view>
+</view>

@@ -1,0 +1,21 @@
+<!--pages/about/index.wxml-->
+<view class='container'>
+  <view class='zan-panel-title'>关于</view>
+  <view class='zan-panel doc-description'>
+    <view class='wxParse-p'>
+      222
+    </view>
+    <view class='wxParse-p'>
+      11
+    </view>
+    <view class='wxParse-p'>
+      333
+    </view>
+    <view class='wxParse-p'>
+      博客地址：https://www.real7.cn/
+    </view>
+    <view class='wxParse-p'>
+      联系方式：realwang@live.cn
+    </view>
+  </view>
+</view>

@@ -1,8 +1,8 @@
 Page({
   data: {
     tools: [
-      { name: '工具1', icon: 'https://gist.githubusercontent.com/real233/c00d9431cd79c160692016849e96f805/raw/vercel.svg', url: '/pages/ip/ip' },
-      { name: '工具2', icon: 'https://gist.githubusercontent.com/real233/c00d9431cd79c160692016849e96f805/raw/ssh.svg', url: '/pages/tool2/index' },
+      { name: 'IP计算器', icon: 'https://gist.githubusercontent.com/wangrui1573/70c9954014e1ebdf57727e20a66918f8/raw/ip.svg', url: '/pages/ip/ip' },
+      { name: '字幕滚动', icon: 'https://gist.githubusercontent.com/wangrui1573/70c9954014e1ebdf57727e20a66918f8/raw/sub.svg', url: '/pages/sub/sub' },
       // 添加更多工具...
     ],
     tools2: [

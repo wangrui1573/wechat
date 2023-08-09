@@ -33,6 +33,11 @@
   background-color: transparent; /* 去掉图标背景 */
 }
 
+.grid-text {
+  font-size: 12px;
+  margin-top: 5rpx;
+}
+
 .spacer {
   height: 20rpx; /* 调整空白的高度 */
 }

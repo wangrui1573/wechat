@@ -63,6 +63,12 @@
   height: 24px;
 }
 
+
+.nav-icon-image {
+  width: 48rpx;
+  height: 48rpx;
+}
+
 .nav-text {
   font-size: 13px;
   margin-top: 4px;

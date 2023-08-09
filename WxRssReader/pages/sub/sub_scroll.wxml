@@ -1,0 +1,4 @@
+<!-- pages/sub_scroll/sub_scroll.wxml -->
+<view class="container">
+  <text class="scroll-text">{{ text }}</text>
+</view>

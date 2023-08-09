@@ -31,6 +31,8 @@
     "pages/rssManage/edit",
     "pages/rssManage/export",
     "pages/ip/ip",
+    "pages/sub/sub",
+    "pages/sub/sub_scroll",
     "pages/tools/tools",
     "pages/about/index"
   ],

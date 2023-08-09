@@ -1,9 +1,11 @@
+<!-- pages/tools/tools.wxml -->
 <view class="container">
   <view class="title">常用工具</view>
   <view class="grid">
     <block wx:for="{{ tools }}" wx:key="name">
       <navigator url="{{ item.url }}" class="grid-item">
         <image src="{{ item.icon }}" class="grid-icon"></image>
+        <text class="grid-text">{{ item.name }}</text>
       </navigator>
     </block>
   </view>
@@ -15,35 +17,37 @@
     <block wx:for="{{ tools2 }}" wx:key="name">
       <navigator url="{{ item.url }}" class="grid-item">
         <image src="{{ item.icon }}" class="grid-icon"></image>
+        <text class="grid-text">{{ item.name }}</text>
       </navigator>
     </block>
   </view>
 </view>
 
-  <!-- 底部导航栏 -->
-  <view class="bottom-nav">
-    <navigator class="nav-item" url="/pages/rss/index">
-      <view class="nav-icon">
-        <icon type="search"></icon>
-      </view>
-      <view class="nav-text">RSS阅读器</view>
-    </navigator>
-    <navigator class="nav-item" url="/pages/tools/tools">
-      <view class="nav-icon">
-        <icon type="circle"></icon>
-      </view>
-      <view class="nav-text">小工具</view>
-    </navigator>
-    <navigator class="nav-item" url="/pages/ip/ip">
-      <view class="nav-icon">
-        <icon type="download"></icon>
-      </view>
-      <view class="nav-text">小工具2</view>
-    </navigator>
-    <navigator class="nav-item" url="/pages/my/index">
-      <view class="nav-icon">
-        <icon type="info"></icon>
-      </view>
-      <view class="nav-text">我的</view>
-    </navigator>
-  </view>
+
+<!-- 底部导航栏 -->
+<view class="bottom-nav">
+  <navigator class="nav-item" url="/pages/rss/index">
+    <view class="nav-icon">
+      <image src="https://gist.githubusercontent.com/wangrui1573/70c9954014e1ebdf57727e20a66918f8/raw/rss.svg" class="nav-icon-image"></image>
+    </view>
+    <view class="nav-text">RSS阅读器</view>
+  </navigator>
+  <navigator class="nav-item" url="/pages/tools/tools">
+    <view class="nav-icon">
+      <image src="https://gist.githubusercontent.com/wangrui1573/70c9954014e1ebdf57727e20a66918f8/raw/tools.svg" class="nav-icon-image"></image>
+    </view>
+    <view class="nav-text">小工具</view>
+  </navigator>
+  <navigator class="nav-item" url="/pages/ip/ip">
+    <view class="nav-icon">
+      <image src="https://gist.githubusercontent.com/wangrui1573/70c9954014e1ebdf57727e20a66918f8/raw/sub.svg" class="nav-icon-image"></image>
+    </view>
+    <view class="nav-text">小工具2</view>
+  </navigator>
+  <navigator class="nav-item" url="/pages/my/index">
+    <view class="nav-icon">
+      <image src="https://gist.githubusercontent.com/wangrui1573/70c9954014e1ebdf57727e20a66918f8/raw/sub.svg" class="nav-icon-image"></image>
+    </view>
+    <view class="nav-text">我的</view>
+  </navigator>
+</view>

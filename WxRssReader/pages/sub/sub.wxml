@@ -1,0 +1,8 @@
+<!-- pages/sub/sub.wxml -->
+<view class="container">
+  <view class="input-container">
+    <text class="input-label">请输入文本：</text>
+    <input class="input-box" placeholder="请输入文本" bindinput="handleInput"></input>
+  </view>
+  <button class="scroll-button" bindtap="goToScrollPage">大字滚动显示</button>
+</view>

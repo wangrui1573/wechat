@@ -19,13 +19,13 @@
       </view>
       <view class="nav-text">RSS阅读器</view>
     </navigator>
-    <navigator class="nav-item" url="/pages/ip/ip">
+    <navigator class="nav-item" url="/pages/tools/tools">
       <view class="nav-icon">
         <icon type="circle"></icon>
       </view>
       <view class="nav-text">小工具</view>
     </navigator>
-    <navigator class="nav-item" url="/pages/tools/ip">
+    <navigator class="nav-item" url="/pages/ip/ip">
       <view class="nav-icon">
         <icon type="download"></icon>
       </view>

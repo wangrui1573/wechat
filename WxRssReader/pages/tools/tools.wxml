@@ -1,15 +1,23 @@
-<!-- pages/ip/ip.wxml -->
 <view class="container">
-  <view class="input-container">
-    <text class="input-label">IP地址：</text>
-    <input class="input-box" placeholder="请输入IP地址" bindinput="handleInput" data-key="ipAddress"></input>
+  <view class="title">常用工具</view>
+  <view class="grid">
+    <block wx:for="{{ tools }}" wx:key="name">
+      <navigator url="{{ item.url }}" class="grid-item">
+        <image src="{{ item.icon }}" class="grid-icon"></image>
+      </navigator>
+    </block>
   </view>
-  <view class="input-container">
-    <text class="input-label">掩码长度：</text>
-    <input class="input-box" placeholder="请输入掩码长度" bindinput="handleInput" data-key="subnetMask"></input>
+
+  <view class="spacer"></view> <!-- 添加空白 -->
+
+  <view class="title">常用工具2</view>
+  <view class="grid">
+    <block wx:for="{{ tools2 }}" wx:key="name">
+      <navigator url="{{ item.url }}" class="grid-item">
+        <image src="{{ item.icon }}" class="grid-icon"></image>
+      </navigator>
+    </block>
   </view>
-  <button class="calculate-button" bindtap="calculateRange">计算IP地址段</button>
-  <view class="result">{{ ipRange }}</view>
 </view>
 
   <!-- 底部导航栏 -->
@@ -39,4 +47,3 @@
       <view class="nav-text">我的</view>
     </navigator>
   </view>
-

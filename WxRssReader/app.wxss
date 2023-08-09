@@ -67,3 +67,6 @@
   font-size: 13px;
   margin-top: 4px;
 }
+.spacer {
+  height: 30rpx; /* 调整空白的高度 */
+}

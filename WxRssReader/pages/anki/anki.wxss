@@ -1,0 +1,65 @@
+/* 页面整体样式 */
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #f7f7f7;
+}
+
+/* 上半部分单词展示和含义 */
+.upper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+.reset-button {
+  background-color: #ff0000;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+}
+
+
+.word {
+  font-size: 8vh; /* vh 表示视口高度的百分比 */
+  white-space: normal; /* 自动换行 */
+  word-wrap: break-word; /* 换行时断开单词 */
+}
+
+.meaning {
+  margin-top: 5vh;
+  font-size: 5vh;
+  color: gray;
+}
+
+/* 下半部分按钮排列 */
+.lower {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 15%;
+  width: 100%;
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}

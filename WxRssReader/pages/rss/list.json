@@ -1,3 +1,9 @@
 {
-  "navigationBarTitleText": "瑞哥Rss文章列表"
+  "usingComponents": {},
+  "navigationBarTitleText": "文章列表",
+  "navigationBarBackgroundColor": "#FAFAFA",
+  "navigationBarTextStyle": "black",
+  "backgroundTextStyle": "dark",
+  "backgroundColor": "#f9f9f9"
+  
 }

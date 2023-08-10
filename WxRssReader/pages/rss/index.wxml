@@ -25,11 +25,11 @@
     </view>
     <view class="nav-text">小工具</view>
   </navigator>
-  <navigator class="nav-item" url="/pages/ip/ip">
+  <navigator class="nav-item" url="/pages/anki/anki">
     <view class="nav-icon">
       <image src="https://gist.githubusercontent.com/wangrui1573/70c9954014e1ebdf57727e20a66918f8/raw/sub.svg" class="nav-icon-image"></image>
     </view>
-    <view class="nav-text">小工具2</view>
+    <view class="nav-text">ANKI背单词</view>
   </navigator>
   <navigator class="nav-item" url="/pages/my/index">
     <view class="nav-icon">

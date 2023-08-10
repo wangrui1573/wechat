@@ -12,7 +12,7 @@ Page(Object.assign({}, Zan.Toast, {
     fields: {
       url: {
         title: 'Feed',
-        placeholder: '请输入Feed地址：http://rsshub.real9.cn/vgter/new',
+        placeholder: '请输入Feed地址：https://rsshub.real9.cn/vgter/new',
         value:"",
         name:"url"
       },

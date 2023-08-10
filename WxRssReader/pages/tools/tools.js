@@ -2,7 +2,7 @@ Page({
   data: {
     tools: [
       { name: 'IP计算器', icon: 'https://gist.githubusercontent.com/wangrui1573/70c9954014e1ebdf57727e20a66918f8/raw/ip.svg', url: '/pages/ip/ip' },
-      { name: '字幕滚动', icon: 'https://gist.githubusercontent.com/wangrui1573/70c9954014e1ebdf57727e20a66918f8/raw/sub.svg', url: '/pages/sub/sub' },
+      { name: '手持弹幕', icon: 'https://gist.githubusercontent.com/wangrui1573/70c9954014e1ebdf57727e20a66918f8/raw/sub.svg', url: '/pages/sub/sub' },
       // 添加更多工具...
     ],
     tools2: [

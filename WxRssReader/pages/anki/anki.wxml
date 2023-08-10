@@ -1,0 +1,15 @@
+<view class="page">
+  <view class="upper" bindtap="showMeaning">
+    <text class="word">{{ currentWord.word }}</text>
+    <text class="meaning" wx:if="{{ showMeaning }}">{{ currentWord.meaning }}</text>
+  </view>
+  <view class="lower">
+    <view class="button" bindtap="onButtonClick" data-text="忘记">忘记</view>
+    <view class="button" bindtap="onButtonClick" data-text="困难">困难</view>
+    <view class="button" bindtap="onButtonClick" data-text="熟悉">熟悉</view>
+    <view class="button" bindtap="onButtonClick" data-text="牢记">牢记</view>
+  </view>
+    <view class="reset-button" bindtap="resetStatus">重置学习进度</view>
+
+</view>
+

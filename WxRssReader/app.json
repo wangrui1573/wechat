@@ -34,11 +34,12 @@
     "pages/sub/sub",
     "pages/sub/sub_scroll",
     "pages/tools/tools",
+    "pages/anki/anki",
     "pages/about/index"
   ],
   "window": {
+    "navigationBarTitleText": "瑞哥工具箱",
     "navigationBarBackgroundColor": "#FAFAFA",
-    "navigationBarTitleText": "瑞哥Rss订阅查看",
     "navigationBarTextStyle": "black",
     "backgroundTextStyle": "dark",
     "backgroundColor": "#f9f9f9"

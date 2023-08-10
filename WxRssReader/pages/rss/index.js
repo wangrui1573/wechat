@@ -1,124 +1,102 @@
 // pages/rss/index.js
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    list:
-      [{
-      title: '订阅列表',
-      content: [
-        {
-          name: '上游世界',
-          path: '/pages/rss/list'
-        }]
-    },{
-      title: '常用工具',
-      content: [
-        {
-          name: 'IP计算器',
-          path: '/pages/ip/ip'
-        }]
-    },
-     {
-      title: '设置',
-      content: [
-        {
-          name: '管理订阅列表',
-          path: '/pages/rssManage/index'
-        },{
-          name: '导入/导出',
-          path: '/pages/rssManage/export'
-        }, {
-          name: '关于',
-          path: '/pages/about/index'
-        }]
-    },
-    // {
-    //   title: '示例',
-    //   content: [
-    //     {
-    //       name: '示例',
-    //       path: '/pages/dashboard/index'
-    //     }]
-    // }
-    ]
-  }, 
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    var newData = this.data.list;
-    var site = wx.getStorageSync("Sites")
-
-    if(site == ""){
-      site = new Array()
-      site[0] = { name: "上游世界", url: "hhttp://rsshub.real9.cn/vgter/new"};
-      wx.setStorageSync('Sites', site)
-    }
-
-    if (site && site != "") {
-      //console.log(site);
-      var sites = []
-      site.forEach(function (val, key) {
-        sites.push({ name: val.name, path: "/pages/rss/list?url=" + encodeURIComponent(val.url) + "&tid=" + key })
-      })
-      if (sites != "") {
-        newData[0].content = sites
-        this.setData({ list: newData })
+    list: [
+      {
+        title: 'RSS站点',
+        content: []
+      },{
+        title: '常用工具',
+        content: [
+          {
+            name: 'IP计算器',
+            path: '/pages/ip/ip'
+          },
+          // {
+          //   name: '导入/导出',
+          //   path: '/pages/rssManage/export'
+          // },
+          // {
+          //   name: '关于',
+          //   path: '/pages/about/index'
+          // }
+        ]
+      },
+      {
+        title: '设置',
+        content: [
+          {
+            name: '管理订阅列表',
+            path: '/pages/rssManage/index'
+          },
+          {
+            name: '导入/导出',
+            path: '/pages/rssManage/export'
+          },
+          {
+            name: '关于',
+            path: '/pages/about/index'
+          }
+        ]
       }
-    }
+    ]
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  onLoad: function () {
+    this.showFetchingDataToast();
+    this.fetchRemoteData();
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    this.onLoad()
+  showFetchingDataToast: function () {
+    wx.showToast({
+      title: '正在获取数据...',
+      icon: 'loading',
+      duration: 1500,
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  fetchRemoteData: function () {
+    var thisData = this;
+    wx.request({
+      url: 'https://gist.githubusercontent.com/wangrui1573/72a5562a0499dd972dcdba1bb04888ce/raw/wx_rss.json',
+      success: function (res) {
+        var remoteSites = res.data;
+        var localSites = wx.getStorageSync("Sites") || [];
+
+        remoteSites.forEach(function (remoteSite) {
+          if (!localSites.some(function (localSite) {
+            return localSite.url === remoteSite.url;
+          })) {
+            localSites.push(remoteSite);
+          }
+        });
+
+        wx.setStorageSync('Sites', localSites);
+        thisData.updateList(localSites);
+      },
+      fail: function () {
+        thisData.hideToast();
+        wx.showToast({
+          title: '数据获取失败',
+          icon: 'none',
+          duration: 1500,
+        });
+      }
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  updateList: function (sites) {
+    var newData = this.data.list.slice();
+    newData[0].content = sites.map(function (val, key) {
+      return { name: val.name, path: "/pages/rss/list?url=" + encodeURIComponent(val.url) + "&tid=" + key };
+    });
+
+    this.setData({ list: newData });
+    this.hideToast();
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  hideToast: function () {
+    wx.hideToast();
   }
-})
+});

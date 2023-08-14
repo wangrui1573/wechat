@@ -18,4 +18,10 @@
       联系方式：realwang@live.cn
     </view>
   </view>
+  <navigator class="nav-item" url="/pages/sample/dashboard/index">
+    <view class="nav-icon">
+      <image src="https://gist.githubusercontent.com/wangrui1573/70c9954014e1ebdf57727e20a66918f8/raw/sub.svg" class="nav-icon-image"></image>
+    </view>
+    <view class="nav-text"> </view>
+  </navigator>
 </view>

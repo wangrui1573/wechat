@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    remoterss_config: '', // 初始的远程站点配置为空
     items:wx.getStorageSync("Sites")
+    
   },
 
   /**
@@ -13,59 +15,32 @@ Page({
    */
   onLoad: function (options) {
     this.setData({ items: wx.getStorageSync("Sites")})
+    const remoteConfig = wx.getStorageSync('remoterss_config');
+    if (remoteConfig) {
+      this.setData({
+        remoterss_config: remoteConfig
+      });
+    }
+  
   },
+
   addSite:function(){
     wx.redirectTo({
       url: '/pages/rssManage/edit',
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  handleRemoteInput: function (event) {
+    this.setData({
+      remoterss_config: event.detail.value
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    this.onLoad();
+  saveRemoteConfig: function () {
+    const remoteURL = this.data.remoterss_config;
+    // 将远程站点配置保存到本地存储
+    wx.setStorageSync('remoterss_config', remoteURL);
+    console.log('保存远程站点配置:', remoteURL);
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
   
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })

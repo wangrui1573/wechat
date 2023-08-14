@@ -46,8 +46,10 @@ Page({
   onLoad: function () {
     this.showFetchingDataToast();
     this.fetchRemoteData();
+
   },
 
+  
   showFetchingDataToast: function () {
     wx.showToast({
       title: '正在获取数据...',
@@ -58,12 +60,19 @@ Page({
 
   fetchRemoteData: function () {
     var thisData = this;
+  
+    // 从本地存储中获取远程站点配置
+    var remoteURL = wx.getStorageSync('remoterss_config');
+  
+    // 如果本地存储中有远程站点配置，则使用该配置作为 URL
+    var requestURL = remoteURL ? remoteURL : 'https://gist.githubusercontent.com/wangrui1573/72a5562a0499dd972dcdba1bb04888ce/raw/wx_rss.json';
+  
     wx.request({
-      url: 'https://gist.githubusercontent.com/wangrui1573/72a5562a0499dd972dcdba1bb04888ce/raw/wx_rss.json',
+      url: requestURL, // 使用动态的 URL
       success: function (res) {
         var remoteSites = res.data;
         var localSites = wx.getStorageSync("Sites") || [];
-
+  
         remoteSites.forEach(function (remoteSite) {
           if (!localSites.some(function (localSite) {
             return localSite.url === remoteSite.url;
@@ -71,9 +80,14 @@ Page({
             localSites.push(remoteSite);
           }
         });
-
-        wx.setStorageSync('Sites', localSites);
-        thisData.updateList(localSites);
+  
+        if (remoteURL) {
+          wx.setStorageSync('Sites', localSites); // 仅在远程站点配置存在时更新本地存储
+          thisData.updateList(localSites);
+        } else {
+          wx.setStorageSync('Sites', localSites); // 在没有远程站点配置时，更新本地存储
+          thisData.updateList(localSites);
+        }
       },
       fail: function () {
         thisData.hideToast();
@@ -85,6 +99,10 @@ Page({
       }
     });
   },
+  
+
+  
+  
 
   updateList: function (sites) {
     var newData = this.data.list.slice();
@@ -98,5 +116,59 @@ Page({
 
   hideToast: function () {
     wx.hideToast();
-  }
+  },
+
+  
+ 
+   /**
+    * 生命周期函数--监听页面初次渲染完成
+    */
+   onReady: function () {
+   
+   },
+ 
+   /**
+    * 生命周期函数--监听页面显示
+    */
+   onShow: function () {
+   
+   },
+ 
+   /**
+    * 生命周期函数--监听页面隐藏
+    */
+   onHide: function () {
+   
+   },
+ 
+   /**
+    * 生命周期函数--监听页面卸载
+    */
+   onUnload: function () {
+   
+   },
+ 
+   /**
+    * 页面相关事件处理函数--监听用户下拉动作
+    */
+   onPullDownRefresh: function () {
+   
+   },
+ 
+   /**
+    * 页面上拉触底事件的处理函数
+    */
+   onReachBottom: function () {
+   
+   },
+ 
+   /**
+    * 用户点击右上角分享
+    */
+   onShareAppMessage: function () {
+   
+   }
+
+
+  
 });

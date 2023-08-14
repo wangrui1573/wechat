@@ -3,13 +3,18 @@
     <text class="word">{{ currentWord.word }}</text>
     <text class="meaning" wx:if="{{ showMeaning }}">{{ currentWord.meaning }}</text>
   </view>
-  <view class="lower">
-    <view class="button" bindtap="onButtonClick" data-text="忘记">忘记</view>
-    <view class="button" bindtap="onButtonClick" data-text="困难">困难</view>
-    <view class="button" bindtap="onButtonClick" data-text="熟悉">熟悉</view>
-    <view class="button" bindtap="onButtonClick" data-text="牢记">牢记</view>
+  <view class="lower-buttons">
+    <view class="button-red" bindtap="onButtonClick" data-text="忘记">忘记</view>
+    <view class="button-yellow" bindtap="onButtonClick" data-text="困难">困难</view>
+    <view class="button-blue" bindtap="onButtonClick" data-text="熟悉">熟悉</view>
+    <view class="button-green" bindtap="onButtonClick" data-text="牢记">牢记</view>
   </view>
-    <view class="reset-button" bindtap="resetStatus">重置学习进度</view>
+  <view class="lower-status">
+    <view class="reset-button" bindtap="resetStatus">⌛重置学习进度</view>
+    <view class="word-count-container" bindtap="showProgressModal">
+    <progress class="progress" percent="{{ t3 }}" strokeWidth="10" show-info="true" activeColor="#007bff"></progress>
+    <text class="word-count">🚩单词数：{{ t2 }}/{{ t1 }}</text>
+  </view>
+  </view>
 
 </view>
-

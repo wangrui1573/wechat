@@ -4,6 +4,7 @@ var xml2json = require('./lib/xml2json.js');
 App({
   globalData: {
   },
+  "lazyCodeLoading": "requiredComponents",
 
   getRss: function (url, fn) {
     wx.request({

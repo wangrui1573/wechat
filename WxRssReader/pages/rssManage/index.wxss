@@ -1,1 +1,24 @@
 /* pages/rssManage/index.wxss */
+
+
+
+
+.rssremote_input {
+    width: 90vw;
+    height: 10vh;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+    margin-bottom: 10px; /* 添加底部空白 */
+    margin-left: auto; /* 自动将左侧空间填充 */
+    margin-right: auto; /* 自动将右侧空间填充 */
+    text-align: center; /* 水平居中 */
+
+    
+  }
+  
+
+  

@@ -14,4 +14,15 @@
     </view>
   </block>
   
+    <!-- 远程站点配置 -->
+ <block>
+  <view class="zan-panel-title">远程站点配置</view>
+  <view class="zan-panel">
+    <input class="rssremote_input" placeholder="请输入远程站点的URL" bindinput="handleRemoteInput" value="{{ remoterss_config }}"></input>
+    <button bindtap="saveRemoteConfig" class="zan-btn zan-btn--primary"><i class="zan-icon zan-icon-passed"></i> 保存</button>
+  </view>
+</block>
+
+
+
 </view>

@@ -31,7 +31,7 @@
     </view>
     <view class="nav-text">ANKI背单词</view>
   </navigator>
-  <navigator class="nav-item" url="/pages/my/index">
+  <navigator class="nav-item" url="/pages/about/index">
     <view class="nav-icon">
       <image src="https://gist.githubusercontent.com/wangrui1573/70c9954014e1ebdf57727e20a66918f8/raw/sub.svg" class="nav-icon-image"></image>
     </view>

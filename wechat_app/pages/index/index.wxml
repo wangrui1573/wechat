@@ -1,0 +1,37 @@
+<!--index.wxml-->
+<scroll-view class="scrollview" scroll-y type="list">
+  
+  <view class="container">
+    Weixin
+    <van-button type="primary">按钮</van-button>
+    <van-button type="default">默认按钮</van-button>
+<van-button type="primary">主要按钮</van-button>
+<van-button type="info">信息按钮</van-button>
+<van-button type="warning">警告按钮</van-button>
+<van-button type="danger">危险按钮</van-button>
+
+
+
+<view class="container">
+
+<van-image1 width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+<van-image
+  width="10rem"
+  height="10rem"
+  fit="contain"
+  src="https://img.yzcdn.cn/vant/cat.jpeg"
+/>
+
+
+
+
+
+
+
+
+    
+</view>
+
+
+  </view>
+</scroll-view>

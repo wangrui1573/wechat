@@ -1,0 +1,9 @@
+<!-- anki_dri.wxml -->
+<view class="page">
+  <view class="lesson-list" wx:for="{{ lessonList }}" wx:key="{{ 'lesson-' + item.lesson }}">
+    <text>Lesson {{ item.lesson }}</text>
+    <text>单词数量：{{ item.wordCount }}</text>
+    <text>学习进度：{{ item.progress }}</text>
+    <button bindtap="startLearning" data-lesson="{{ item.lesson }}">学习</button>
+  </view>
+</view>

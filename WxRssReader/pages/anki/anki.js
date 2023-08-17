@@ -15,7 +15,7 @@ Page({
     const thisPage = this;
 
     wx.request({
-      url: 'https://gist.githubusercontent.com/wangrui1573/59cedefd8c8aa008f22961f3b33d59c6/raw/wx_anki1.json',
+      url: 'https://db.real9.cn/word/',
       success: function (res) {
         const remoteWords = res.data;
         console.log("远程单词数据：", remoteWords);
@@ -72,6 +72,7 @@ Page({
         mergedWords.push({
           word: localWord.word,
           meaning: remoteWord.meaning,
+          lesson: remoteWord.lesson,
           status: localWord.status // 保持状态不变
         });
       } else {

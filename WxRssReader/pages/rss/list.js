@@ -1,3 +1,4 @@
+// pages/rss/list.js
 Page({
   data: {
     url: 'https://bak.yantuz.cn:8000/view.php?v=' + Math.random() + "&url=",

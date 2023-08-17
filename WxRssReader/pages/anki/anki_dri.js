@@ -1,19 +1,47 @@
-// anki_dri.js
 Page({
   data: {
-    lessonList: [], // 存放 lesson 数据
+    lessonList: [],
   },
-  
+
   onLoad: function () {
-    // 获取 lesson 数据并计算学习进度
-    // 示例数据 lessonList = [{ lesson: 1, wordCount: 20, progress: 0.25 }, ...]
-  },
-  
-  startLearning: function (event) {
-    const lesson = event.currentTarget.dataset.lesson;
-    // 跳转到 anki 页面，并传递 lesson 数据
-    wx.navigateTo({
-      url: `/pages/anki/anki?lesson=${lesson}`,
+    this.setData({
+      lessonList: this.calculateLessonInfo(),
     });
-  }
+  },
+
+
+  goToAnki: function (event) {
+    const lesson = event.currentTarget.dataset.lesson;
+    console.log("第", lesson, "课");
+    const url = '/pages/anki/anki2?lesson=' + lesson; // 假设你的 anki2 页面路径为 pages/anki/anki2
+    console.log("跳转地址：", url);
+    wx.navigateTo({
+      url: url,
+    });
+  },
+    
+  
+  
+  calculateLessonInfo: function () {
+    const words = wx.getStorageSync('words'); // 假设words是从本地存储获取的数据
+    const distinctLessons = [...new Set(words.map(word => word.lesson))];
+
+    const lessonInfoList = distinctLessons.map(lesson => {
+      const totalWordsInLesson = words.filter(word => word.lesson === lesson).length;
+      // console.log("单词数量：", totalWordsInLesson);
+      const learnedWordsInLesson = words.filter(word => word.lesson === lesson && word.status === 0).length;
+      // console.log("已学单词：", learnedWordsInLesson);
+      const progress = ((learnedWordsInLesson / totalWordsInLesson) * 100).toFixed(2);
+
+      return {
+        lesson: lesson,
+        wordCount: totalWordsInLesson,
+        progress: progress,
+      };
+    });
+
+    return lessonInfoList;
+  },
+
+  // ...其他函数和逻辑
 });

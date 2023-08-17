@@ -6,7 +6,7 @@ Page({
       // 添加更多工具...
     ],
     tools2: [
-      { name: '工具3', icon: 'https://gist.githubusercontent.com/real233/c00d9431cd79c160692016849e96f805/raw/traffic.svg', url: '/pages/ipqw/index' },
+      { name: '工具3', icon: 'https://gist.githubusercontent.com/real233/c00d9431cd79c160692016849e96f805/raw/traffic.svg', url: '/pages/anki/anki2' },
       { name: '工具4', icon: 'https://gist.githubusercontent.com/real233/c00d9431cd79c160692016849e96f805/raw/emby.svg', url: '/pages/anki/anki_dri' },
       // 添加更多工具...
     ],

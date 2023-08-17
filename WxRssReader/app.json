@@ -36,6 +36,7 @@
     "pages/tools/tools",
     "pages/anki/anki",
     "pages/anki/anki_dri",
+    "pages/anki/anki2",
     "pages/about/index"
   ],
   "window": {

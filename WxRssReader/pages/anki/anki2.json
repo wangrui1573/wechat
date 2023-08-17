@@ -1,0 +1,9 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "ANKI背单词",
+  "navigationBarBackgroundColor": "#FAFAFA",
+  "navigationBarTextStyle": "black",
+  "backgroundTextStyle": "dark",
+  "backgroundColor": "#f9f9f9"
+  
+}

@@ -10,13 +10,22 @@
   background-color: #f7f7f7;
 }
 
+/* .middle {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 10vh;
+  width: 100%;
+} */
 /* 上半部分单词展示和含义 */
 .upper {
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
+  /* 设置卡片的圆角 */
   justify-content: center;
   align-items: center;
-  height: 80%;
+  height: 80%; 
   width: 100%;
   cursor: pointer;
   overflow: hidden;
@@ -25,23 +34,39 @@
   padding: 20px;
   box-sizing: border-box;
   background-color: white;
+  
 }
+
+
+
+ .bg-image {
+  
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100vw;
+  width: 100vh;
+ 
+} 
 
 
 
 
 
 .word {
-  font-size: 8vh; /* vh 表示视口高度的百分比 */
-  white-space: normal; /* 自动换行 */
+  font-size: 5vh;
+  /* vh 表示视口高度的百分比 */
+  white-space: normal;
+  /* 自动换行 */
   /* word-wrap: break-word; 换行时断开单词 */
 }
 
 .meaning {
-  margin-top: 5vh;
-  font-size: 5vh;
+  margin-top: 3vh;
+  font-size: 3vh;
   color: gray;
-  white-space: normal; /* 自动换行 */
+  white-space: normal;
+  /* 自动换行 */
 }
 
 /* 下半部分按钮排列 */
@@ -62,7 +87,8 @@
 }
 
 .button-blue {
-  background-color: #007bff; /* 蓝色 */
+  background-color: #007bff;
+  /* 蓝色 */
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
@@ -70,7 +96,8 @@
 }
 
 .button-red {
-  background-color: #ff0000; /* 红色 */
+  background-color: #ff0000;
+  /* 红色 */
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
@@ -78,15 +105,18 @@
 }
 
 .button-yellow {
-  background-color: #ffff00; /* 黄色 */
-  color: black; /* 注意：为了更好的可读性，黄色按钮的文字颜色改为黑色 */
+  background-color: #ffff00;
+  /* 黄色 */
+  color: black;
+  /* 注意：为了更好的可读性，黄色按钮的文字颜色改为黑色 */
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .button-green {
-  background-color: #1f6b1f; /* 绿色 */
+  background-color: #1f6b1f;
+  /* 绿色 */
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
@@ -107,9 +137,11 @@
   align-items: center;
   height: 10%;
   width: 100%;
-  margin-bottom: 1px; /* 可根据需要调整下边距 */
-  
+  margin-bottom: 1px;
+  /* 可根据需要调整下边距 */
+
 }
+
 .reset-button,
 .word-count {
   flex: 1;
@@ -119,17 +151,22 @@
 
 .floating-icon {
   position: fixed;
-  bottom: 25vh; /* 距离底部的距离 */
-  right: 4vw; /* 距离右侧的距离 */
-  
-  cursor: pointer; /* 鼠标悬停时显示指针形状 */
+  bottom: 25vh;
+  /* 距离底部的距离 */
+  right: 4vw;
+  /* 距离右侧的距离 */
+
+  cursor: pointer;
+  /* 鼠标悬停时显示指针形状 */
 }
 
 
 .icon {
-  font-size: 40px; /* 设置图标的字体大小 */
+  font-size: 40px;
+  /* 设置图标的字体大小 */
 }
 
 .course {
-  font-size: 20px; /* 设置课程文本的字体大小 */
+  font-size: 20px;
+  /* 设置课程文本的字体大小 */
 }

@@ -10,21 +10,31 @@ Page({
   // 页面加载时执行的函数
   onLoad: function (options) {
 
-    wx.stopPullDownRefresh()
+    
     const lesson = options.lesson ? parseInt(options.lesson) : 0;
     this.setData({ lesson: lesson });
 
     this.loadStoredData(); // 加载本地存储中的数据
+    
     this.nextWord();        // 显示下一个单词
   },
 
   // 切换显示单词的含义
   showMeaning: function () {
-    this.setData({
-      showMeaning: !this.data.showMeaning
-    });
+    const currentWord = this.data.currentWord;
+    if (currentWord) {
+      const newShowMeaning = !this.data.showMeaning;
+      const bgImageUrl = newShowMeaning ? currentWord.url2 : currentWord.url1;
+      
+      this.setData({
+        showMeaning: newShowMeaning,
+        upperBgImage: bgImageUrl
+      });
+    }
   },
-
+  
+  
+  
   // 加载本地存储中的数据
   loadStoredData: function () {
     const allWords = wx.getStorageSync("words") || [];
@@ -125,19 +135,25 @@ Page({
 
   // 显示下一个单词
   nextWord: function () {
-    const wordArray = this.data.words.filter(word => word.status >= 1 && (this.data.lesson === 0 || word.lesson === this.data.lesson));
+    const wordArray = this.data.words.filter(word => word.status >= 1);
     if (wordArray.length === 0) {
       this.showAllWordsLearnedToast();
       return;
     }
-
+  
     const nextIndex = Math.floor(Math.random() * wordArray.length);
-    this.setData({
-      currentWord: wordArray[nextIndex],
-      currentIndex: nextIndex,
-      showMeaning: false
-    });
+    const currentWord = wordArray[nextIndex];
+  
+    // 根据当前单词的情况定义 url1
+    const url1 = currentWord.url1;
 
+    this.setData({
+      currentWord: currentWord,
+      currentIndex: nextIndex,
+      showMeaning: false,
+      upperBgImage: url1 // 设置为 url1 的值
+    });
+  
     const t2 = this.data.words.filter(word => word.status === 0).length;
     const t1 = this.data.words.length;
     const t3 = ((t2 / t1) * 100).toFixed(1);
@@ -147,6 +163,7 @@ Page({
       t3: t3
     });
   },
+  
 
   // 点击单词区域，显示单词含义
   onWordBlockClick: function () {

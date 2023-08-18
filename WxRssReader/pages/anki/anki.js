@@ -17,29 +17,51 @@ Page({
 
   updateRemoteData: function () {
     const thisPage = this;
-
+  
+    // 显示更新中提示
+    wx.showLoading({
+      title: '单词数据更新中...',
+      mask: true // 遮罩层，防止用户操作
+    });
+  
     wx.request({
       url: 'https://db.real9.cn/word/',
       success: function (res) {
+        // 隐藏更新中提示
+        wx.hideLoading();
+  
         const remoteWords = res.data;
         console.log("远程单词数据：", remoteWords);
-
+  
         // 获取本地数据
         const localWords = thisPage.loadStoredData();
-
+  
         // 合并数据并更新本地
         const mergedWords = thisPage.mergeWords(localWords, remoteWords);
-
+  
         thisPage.saveStoredData(mergedWords); // 保存更新后的数据到本地
         thisPage.initializeData(mergedWords); // 初始化数据
       },
       fail: function (err) {
+        // 隐藏更新中提示
+        wx.hideLoading();
+  
         console.error("远程数据获取失败：", err);
         thisPage.initializeData([]);
       }
     });
   },
   
+  onPullDownRefresh: function () {
+    
+    this.onLoad(); //重新加载onLoad()
+   
+    wx.showLoading({
+      title: '单词数据更新中...',
+      mask: true // 遮罩层，防止用户操作
+    });
+  },
+
   onLoad: function () {
     this.updateRemoteData(); // 在页面显示时更新远程数据
     this.loadStoredData();   // 加载本地数据
@@ -57,6 +79,7 @@ Page({
 
      // 将已显示弹窗的标志位存储在本地
      wx.setStorageSync('hasShownModal', true);
+     
    }
  },
 

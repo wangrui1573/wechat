@@ -1,3 +1,4 @@
+<!-- anki_dri.wxml -->
 <view class="container">
   <view class="doc-title zan-hairline--bottom">课程列表</view>
 

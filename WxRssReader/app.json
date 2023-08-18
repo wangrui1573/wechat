@@ -43,8 +43,10 @@
     "navigationBarTitleText": "瑞哥工具箱",
     "navigationBarBackgroundColor": "#FAFAFA",
     "navigationBarTextStyle": "black",
-    "backgroundTextStyle": "dark",
-    "backgroundColor": "#f9f9f9"
+    
+    "backgroundColor": "#f9f9f9",
+    "enablePullDownRefresh": true 
+    
   },
   "debug": false,
   "lazyCodeLoading": "requiredComponents",

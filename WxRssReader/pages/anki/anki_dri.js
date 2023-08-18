@@ -44,4 +44,29 @@ Page({
   },
 
   // ...其他函数和逻辑
+
+  onPullDownRefresh: function () {
+    var that = this;
+    that.setData({
+      currentTab: 0 //当前页的一些初始数据，视业务需求而定
+    })
+    this.onLoad(); //重新加载onLoad()
+    wx.stopPullDownRefresh()
+    
+  },
+ 
+  onload: function (options) {
+    // 获取参数
+
+    var refresh = options.refresh;
+    // 判断是否需要刷新
+    if(refresh === 'true') {
+      // 执行刷新操作
+      onPullDownRefresh
+      // this.onLoad();
+      // this.refreshPage();
+      
+    }
+  },
+  
 });

@@ -9,6 +9,8 @@ Page({
 
   // 页面加载时执行的函数
   onLoad: function (options) {
+
+    wx.stopPullDownRefresh()
     const lesson = options.lesson ? parseInt(options.lesson) : 0;
     this.setData({ lesson: lesson });
 
@@ -35,7 +37,15 @@ Page({
   navigateBack: function () {
     wx.navigateBack({
       delta: 1, // 返回的页面数，1表示返回上一页
+      success: function(res){
+        // 通过options参数传递参数
+        wx.navigateTo({
+          url: '../anki/anki_dri?refresh=true'
+        })
+        
+      } 
     });
+    
   },
 
   // 保存更新后的单词数据到本地存储

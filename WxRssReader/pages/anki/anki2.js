@@ -22,6 +22,7 @@ Page({
   // 切换显示单词的含义
   showMeaning: function () {
     const currentWord = this.data.currentWord;
+    this.speakText(currentWord.word);
     if (currentWord) {
       const newShowMeaning = !this.data.showMeaning;
       const bgImageUrl = newShowMeaning ? currentWord.url2 : currentWord.url1;
@@ -94,7 +95,13 @@ Page({
       duration: 2000,
     });
   },
-
+  //朗读当前单词
+  read: function () {
+    const currentWord = this.data.currentWord;
+    if (currentWord) {
+      this.speakText(currentWord.word);
+    }
+  },
   // 重置所有单词的学习进度为“忘记”
   resetStatus: function () {
     const updatedWords = this.data.words.map(word => {
@@ -108,6 +115,9 @@ Page({
       }
       return word;
     });
+
+    // 重置所有单词的学习进度为“忘记”
+  
   
     console.log("更新数据:", updatedWords);
     
@@ -134,6 +144,36 @@ Page({
   
 
   // 显示下一个单词
+  // nextWord: function () {
+  //   const wordArray = this.data.words.filter(word => word.status >= 1);
+  //   if (wordArray.length === 0) {
+  //     this.showAllWordsLearnedToast();
+  //     return;
+  //   }
+  
+  //   const nextIndex = Math.floor(Math.random() * wordArray.length);
+  //   const currentWord = wordArray[nextIndex];
+  
+  //   // 根据当前单词的情况定义 url1
+  //   const url1 = currentWord.url1;
+
+  //   this.setData({
+  //     currentWord: currentWord,
+  //     currentIndex: nextIndex,
+  //     showMeaning: false,
+  //     upperBgImage: url1 // 设置为 url1 的值
+  //   });
+  
+  //   const t2 = this.data.words.filter(word => word.status === 0).length;
+  //   const t1 = this.data.words.length;
+  //   const t3 = ((t2 / t1) * 100).toFixed(1);
+  //   this.setData({
+  //     t2: t2,
+  //     t1: t1,
+  //     t3: t3
+  //   });
+  // },
+  
   nextWord: function () {
     const wordArray = this.data.words.filter(word => word.status >= 1);
     if (wordArray.length === 0) {
@@ -146,7 +186,10 @@ Page({
   
     // 根据当前单词的情况定义 url1
     const url1 = currentWord.url1;
-
+  
+    // 调用朗读方法
+    // this.speakText(currentWord.word);
+  
     this.setData({
       currentWord: currentWord,
       currentIndex: nextIndex,
@@ -161,6 +204,43 @@ Page({
       t2: t2,
       t1: t1,
       t3: t3
+    });
+  },
+  
+  // 定义朗读方法
+  speakText: function (text) {
+    this.innerAudioContext = wx.createInnerAudioContext({
+      useWebAudioImplement: false
+    })
+    const that = this;
+    wx.request({
+      url: "https://tsn.baidu.com/text2audio",
+      data: {
+        tex: text,
+        spd: 4,
+        aue: 3,
+        cuid: 'baidu_speech_demo',
+        idx: 1,
+        cod: 2,
+        lan: 'zh',
+        ctp: 1,
+        pdt: 220,
+        vol: 12,
+        pit: 5,
+        _res_tag_: 'audio'
+      },
+      responseType: 'arraybuffer',
+      success(res) {
+        const buffer = res.data;
+        const fs = wx.getFileSystemManager();
+        const path = wx.env.USER_DATA_PATH + "/temp_audio.mp3";
+        fs.writeFileSync(path, buffer, 'binary');
+        that.innerAudioContext.src = path;
+        that.innerAudioContext.play();
+      },
+      fail(err) {
+        console.error('TTS 请求失败', err);
+      }
     });
   },
   

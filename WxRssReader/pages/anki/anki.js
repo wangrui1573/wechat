@@ -1,3 +1,6 @@
+
+
+
 Page({
   data: {
     words: [],
@@ -8,8 +11,9 @@ Page({
     t1: 0,
     t2: 0,
   },
-
   
+
+
 
   updateRemoteData: function () {
     const thisPage = this;
@@ -186,6 +190,7 @@ Page({
       return {
         word: word.word,
         meaning: word.meaning,
+        lesson: word.lesson, // 更新lesson栏位
         status: 3
       };
     });
@@ -223,6 +228,7 @@ Page({
     
   },
 
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -117,3 +117,19 @@
   margin: 0;
 }
 
+.floating-icon {
+  position: fixed;
+  bottom: 25vh; /* 距离底部的距离 */
+  right: 4vw; /* 距离右侧的距离 */
+  
+  cursor: pointer; /* 鼠标悬停时显示指针形状 */
+}
+
+
+.icon {
+  font-size: 40px; /* 设置图标的字体大小 */
+}
+
+.course {
+  font-size: 20px; /* 设置课程文本的字体大小 */
+}

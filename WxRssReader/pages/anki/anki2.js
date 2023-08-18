@@ -1,120 +1,59 @@
 Page({
   data: {
-    words: [],
-    currentWord: null,
-    currentIndex: -1,
-    learningPhase: 3,
-    showMeaning: false,
-    t1: 0,
-    t2: 0,
+    words: [],          // 存储单词列表
+    currentWord: null,  // 当前展示的单词
+    currentIndex: -1,   // 当前单词在列表中的索引
+    showMeaning: false, // 是否显示单词的含义
+    lesson: 0           // 当前课程编号
   },
 
-  
+  // 页面加载时执行的函数
+  onLoad: function (options) {
+    const lesson = options.lesson ? parseInt(options.lesson) : 0;
+    this.setData({ lesson: lesson });
 
-  updateRemoteData: function () {
-    const thisPage = this;
-
-    wx.request({
-      url: 'https://db.real9.cn/word/',
-      success: function (res) {
-        const remoteWords = res.data;
-        console.log("远程单词数据：", remoteWords);
-
-        // 获取本地数据
-        const localWords = thisPage.loadStoredData();
-
-        // 合并数据并更新本地
-        const mergedWords = thisPage.mergeWords(localWords, remoteWords);
-
-        thisPage.saveStoredData(mergedWords); // 保存更新后的数据到本地
-        thisPage.initializeData(mergedWords); // 初始化数据
-      },
-      fail: function (err) {
-        console.error("远程数据获取失败：", err);
-        thisPage.initializeData([]);
-      }
-    });
+    this.loadStoredData(); // 加载本地存储中的数据
+    this.nextWord();        // 显示下一个单词
   },
-  
-  onLoad: function () {
-    this.updateRemoteData(); // 在页面显示时更新远程数据
-    this.loadStoredData();   // 加载本地数据
-   // 检查本地存储，看是否已经显示过弹窗
-   const hasShownModal = wx.getStorageSync('hasShownModal');
 
-   if (!hasShownModal) {
-     // 若没有显示过弹窗，则显示提示弹窗
-     wx.showModal({
-       title: '使用提示',
-       content: '点击屏幕显示答案',
-       showCancel: false,
-       confirmText: '知道了'
-     });
-
-     // 将已显示弹窗的标志位存储在本地
-     wx.setStorageSync('hasShownModal', true);
-   }
- },
-
- 
-  
-  mergeWords: function (localWords, remoteWords) {
-    if (!localWords || localWords.length === 0) {
-      return remoteWords;
-    }
-
-    const mergedWords = [];
-
-    // 处理本地数据
-    for (const localWord of localWords) {
-      const remoteWord = remoteWords.find(r => r.word === localWord.word);
-      if (remoteWord) {
-        mergedWords.push({
-          word: localWord.word,
-          meaning: remoteWord.meaning,
-          lesson: remoteWord.lesson,
-          status: localWord.status // 保持状态不变
-        });
-      } else {
-        mergedWords.push(localWord);
-      }
-    }
-
-    // 处理远程数据
-    for (const remoteWord of remoteWords) {
-      const existingWord = localWords.find(l => l.word === remoteWord.word);
-      if (!existingWord) {
-        mergedWords.push(remoteWord);
-      }
-    }
-    
-    const t1 = mergedWords.length;
-    console.log("单词数量：", t1);
-    this.setData({ t1: t1 });
-
-    const t2 = mergedWords.filter(word => word.status === 0).length;;
-    console.log("学单词数量：", t2);
-    this.setData({ t2: t2 });
-
-    return mergedWords;
-    
-    
-  },
-   
-  
-
-  initializeData: function (initialWords) {
-    wx.setStorageSync("words", initialWords);
+  // 切换显示单词的含义
+  showMeaning: function () {
     this.setData({
-      words: initialWords
+      showMeaning: !this.data.showMeaning
     });
-
-    this.nextWord();
-    
   },
 
-  //---------------------------
+  // 加载本地存储中的数据
+  loadStoredData: function () {
+    const allWords = wx.getStorageSync("words") || [];
+    const filteredWords = this.data.lesson > 0 ? allWords.filter(word => word.lesson === this.data.lesson) : allWords;
+    this.setData({
+      words: filteredWords
+    });
+  },
+  //返回上一页
+  navigateBack: function () {
+    wx.navigateBack({
+      delta: 1, // 返回的页面数，1表示返回上一页
+    });
+  },
 
+  // 保存更新后的单词数据到本地存储
+  saveStoredData: function (updatedWord) {
+    const words = this.data.words.map(word => {
+      if (word.word === updatedWord.word) {
+        return updatedWord;
+      }
+      return word;
+    });
+
+    wx.setStorageSync("words", words);
+    this.setData({
+      words: words
+    });
+  },
+
+  // 显示学习进度对话框
   showProgressModal: function () {
     const learnedWords = this.data.words.filter(word => word.status === 0).length;
     const totalWords = this.data.words.length;
@@ -127,24 +66,7 @@ Page({
     });
   },
 
-  showMeaning: function () {
-    this.setData({
-      showMeaning: !this.data.showMeaning
-    });
-  },
-
-  loadStoredData: function () {
-    const localWords = wx.getStorageSync("words") || [];
-    return localWords;
-  },
-
-  saveStoredData: function (updatedWords) {
-    wx.setStorageSync("words", updatedWords);
-    this.setData({
-      words: updatedWords
-    });
-  },
-  
+  //学完弹窗提示  
   showAllWordsLearnedToast: function () {
     wx.showToast({
       title: '所有单词已学完！',
@@ -153,123 +75,114 @@ Page({
     });
   },
 
+  // 重置所有单词的学习进度为“忘记”
+  resetStatus: function () {
+    const updatedWords = this.data.words.map(word => {
+      if (this.data.lesson === 0 || word.lesson === this.data.lesson) {
+        return {
+          word: word.word,
+          meaning: word.meaning,
+          lesson: word.lesson,
+          status: 3
+        };
+      }
+      return word;
+    });
+  
+    console.log("更新数据:", updatedWords);
+    
+    // 更新本地存储中的数据
+    const allWords = wx.getStorageSync("words") || [];
+    const updatedWordsInStorage = allWords.map(word => {
+      const updatedWord = updatedWords.find(updated => updated.word === word.word);
+      if (updatedWord) {
+        return updatedWord;
+      }
+      return word;
+    });
+    
+    wx.setStorageSync("words", updatedWordsInStorage); // 更新本地数据
+    
+    this.setData({
+      words: updatedWords,
+      currentWord: updatedWords[this.data.currentIndex],
+      showMeaning: false
+    });
+    this.nextWord();
+  },
+  
+  
+
+  // 显示下一个单词
   nextWord: function () {
-    const wordArray = this.data.words.filter(word => word.status >= 1);
+    const wordArray = this.data.words.filter(word => word.status >= 1 && (this.data.lesson === 0 || word.lesson === this.data.lesson));
     if (wordArray.length === 0) {
       this.showAllWordsLearnedToast();
       return;
     }
-  
+
     const nextIndex = Math.floor(Math.random() * wordArray.length);
     this.setData({
       currentWord: wordArray[nextIndex],
       currentIndex: nextIndex,
       showMeaning: false
     });
-  
-  const t2 = this.data.words.filter(word => word.status === 0).length;
-  const t1 = this.data.words.length;
-  const t3 = (t2 / t1 * 100).toFixed(1); // 计算百分比，保留两位小数
-  this.setData({
-    t2: t2,
-    t1: t1,
-    t3: t3
+
+    const t2 = this.data.words.filter(word => word.status === 0).length;
+    const t1 = this.data.words.length;
+    const t3 = ((t2 / t1) * 100).toFixed(1);
+    this.setData({
+      t2: t2,
+      t1: t1,
+      t3: t3
     });
   },
 
+  // 点击单词区域，显示单词含义
   onWordBlockClick: function () {
     this.setData({ showMeaning: true });
   },
 
-  resetStatus: function () {
-    const updatedWords = this.data.words.map(word => {
-      return {
-        word: word.word,
-        meaning: word.meaning,
-        status: 3
-      };
-    });
-    
-    console.log("更新数据:", updatedWords); 
-    wx.setStorageSync("words", updatedWords); // 将更新后的数据直接覆盖到本地存储
-
-    this.setData({
-        words: updatedWords,
-        currentWord: updatedWords[this.data.currentIndex],
-        showMeaning: false
-    }
-    )
-    this.nextWord();
-},
-
-  
+  // 点击按钮，更新单词的学习进度
   onButtonClick: function (event) {
     const buttonText = event.currentTarget.dataset.text;
-    const word = this.data.currentWord;
+    const updatedWord = { ...this.data.currentWord }; // 创建当前单词对象的副本
 
     if (buttonText === "忘记") {
-      word.status = 3;
+      updatedWord.status = 3;
     } else if (buttonText === "困难") {
-      word.status = 2;
+      updatedWord.status = 2;
     } else if (buttonText === "熟悉") {
-      word.status = 1;
+      updatedWord.status = 1;
     } else if (buttonText === "牢记") {
-      word.status = 0;
+      updatedWord.status = 0;
     }
 
-    this.saveStoredData(this.data.words); // 保存更新后的数据到本地
-    
+    // 更新内存中的单词状态
+    const updatedWords = this.data.words.map(word => {
+      if (word.word === updatedWord.word) {
+        return updatedWord;
+      }
+      return word;
+    });
+
+    // 更新内存中的数据
+    this.setData({
+      words: updatedWords,
+      currentWord: updatedWord
+    });
+
+    // 更新本地存储中的数据
+    const allWords = wx.getStorageSync("words") || [];
+    const updatedWordsInStorage = allWords.map(word => {
+      if (word.word === updatedWord.word) {
+        return updatedWord;
+      }
+      return word;
+    });
+    wx.setStorageSync("words", updatedWordsInStorage);
+
+    // 显示下一个单词
     this.nextWord();
-    
-  },
-
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
 });

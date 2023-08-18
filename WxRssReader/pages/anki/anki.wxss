@@ -122,7 +122,9 @@
   position: fixed;
   bottom: 25vh; /* 距离底部的距离 */
   right: 4vw; /* 距离右侧的距离 */
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer; /* 鼠标悬停时显示指针形状 */
 }
 

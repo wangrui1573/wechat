@@ -1,3 +1,6 @@
+var app = getApp()
+
+
 Page({
   data: {
     words: [],          // 存储单词列表
@@ -99,7 +102,7 @@ Page({
   read: function () {
     const currentWord = this.data.currentWord;
     if (currentWord) {
-      this.speakText(currentWord.word);
+      app.speakText(currentWord.word);
     }
   },
   // 重置所有单词的学习进度为“忘记”
@@ -207,42 +210,7 @@ Page({
     });
   },
   
-  // 定义朗读方法
-  speakText: function (text) {
-    this.innerAudioContext = wx.createInnerAudioContext({
-      useWebAudioImplement: false
-    })
-    const that = this;
-    wx.request({
-      url: "https://tsn.baidu.com/text2audio",
-      data: {
-        tex: text,
-        spd: 4,
-        aue: 3,
-        cuid: 'baidu_speech_demo',
-        idx: 1,
-        cod: 2,
-        lan: 'zh',
-        ctp: 1,
-        pdt: 220,
-        vol: 12,
-        pit: 5,
-        _res_tag_: 'audio'
-      },
-      responseType: 'arraybuffer',
-      success(res) {
-        const buffer = res.data;
-        const fs = wx.getFileSystemManager();
-        const path = wx.env.USER_DATA_PATH + "/temp_audio.mp3";
-        fs.writeFileSync(path, buffer, 'binary');
-        that.innerAudioContext.src = path;
-        that.innerAudioContext.play();
-      },
-      fail(err) {
-        console.error('TTS 请求失败', err);
-      }
-    });
-  },
+
   
 
   // 点击单词区域，显示单词含义

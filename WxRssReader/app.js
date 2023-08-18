@@ -2,9 +2,48 @@
 var xml2json = require('./lib/xml2json.js');
 
 App({
+  // 定义朗读方法
+  speakText: function (text) {
+    this.innerAudioContext = wx.createInnerAudioContext({
+      useWebAudioImplement: false
+    })
+    const that = this;
+    wx.request({
+      url: "https://tsn.baidu.com/text2audio",
+      data: {
+        tex: text,
+        spd: 4,
+        aue: 3,
+        cuid: 'baidu_speech_demo',
+        idx: 1,
+        cod: 2,
+        lan: 'zh',
+        ctp: 1,
+        pdt: 220,
+        vol: 12,
+        pit: 5,
+        _res_tag_: 'audio'
+      },
+      responseType: 'arraybuffer',
+      success(res) {
+        const buffer = res.data;
+        const fs = wx.getFileSystemManager();
+        const path = wx.env.USER_DATA_PATH + "/temp_audio.mp3";
+        fs.writeFileSync(path, buffer, 'binary');
+        that.innerAudioContext.src = path;
+        that.innerAudioContext.play();
+      },
+      fail(err) {
+        console.error('TTS 请求失败', err);
+      }
+    });
+  },
+  
+
   globalData: {
   },
   "lazyCodeLoading": "requiredComponents",
+  
 
   getRss: function (url, fn) {
     wx.request({
@@ -32,6 +71,8 @@ App({
       }
     })
   },
+
+  
   
 
 });

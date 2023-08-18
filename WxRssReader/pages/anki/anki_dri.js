@@ -15,7 +15,7 @@ Page({
     console.log("第", lesson, "课");
     const url = '/pages/anki/anki2?lesson=' + lesson; // 假设你的 anki2 页面路径为 pages/anki/anki2
     console.log("跳转地址：", url);
-    wx.navigateTo({
+    wx.redirectTo({
       url: url,
     });
   },

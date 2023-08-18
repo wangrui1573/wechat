@@ -16,7 +16,7 @@
       <text class="word-count">🚩单词数：{{ t2 }}/{{ t1 }}</text>
     </view>
     <!-- 悬浮图标，点击跳转到anki_dri页面 -->
-    <navigator url="/pages/anki/anki_dri">
+    <navigator url="/pages/anki/anki_dri" open-type="redirect">
       <view class="floating-icon">
         <text class="icon">📚</text>
         <text class="course">课程</text>

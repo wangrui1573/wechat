@@ -1,30 +1,39 @@
 Page({
   data: {
-    musicData: [
-      {
-        name: '无人之岛',
-        link: 'https://music.real9.cn/static/media/Mojito.96d7f2f6.flac',
-        cover: 'http://p2.music.126.net/DGMOvGYBjOfBKNkMBnC7ug==/19196373509643886.jpg'
-      },
-      {
-        name: '红色高跟鞋',
-        link: 'https://music.real9.cn/static/media/%E7%BA%A2%E8%89%B2%E9%AB%98%E8%B7%9F%E9%9E%8B.5412f8de.mp3',
-        cover: 'http://p1.music.126.net/jJOaqlez9x5VofjgB7B_Bw==/109951166195459631.jpg'
-      }
-      // 可以继续添加更多歌曲数据
-    ],
+    musicData: [], // 歌曲数据
     currentMusicIndex: 0, // 当前播放歌曲的索引
     isPlaying: false, // 是否正在播放
     rotateDeg: 0 // 旋转角度
   },
 
   onLoad: function () {
-    // 检查本地存储是否有音乐数据，没有则创建
-    const musicData = wx.getStorageSync('musicData');
-    if (!musicData) {
-      wx.setStorageSync('musicData', this.data.musicData);
-    }
+    // 获取远程歌曲数据并更新到本地
+    this.updateMusicData();
   },
+
+  // 获取远程歌曲数据并更新到本地
+  updateMusicData: function () {
+    wx.request({
+      url: 'https://db.real9.cn/real/lesson/2',
+      success: (res) => {
+        const remoteMusicData = res.data;
+        wx.setStorageSync('musicData', remoteMusicData);
+        wx.showToast({
+          title: '数据更新完成',
+          icon: 'success',
+          duration: 2000
+        });
+        this.setData({
+          musicData: remoteMusicData
+        });
+      },
+      fail: (err) => {
+        console.error('获取远程歌曲数据失败', err);
+      }
+    });
+  },
+
+  
 
   // 播放按钮点击事件
   play: function () {

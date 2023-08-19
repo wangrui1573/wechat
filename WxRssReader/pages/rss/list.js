@@ -2,7 +2,7 @@
 Page({
   data: {
     // url: 'https://bak.yantuz.cn:8000/view.php?v=' + Math.random() + "&url=",
-    url: 'https://pxy.real9.cn/',
+    url: 'https://pxy2.real9.cn/s/',
 
     title: '岩兔站',
     items: []

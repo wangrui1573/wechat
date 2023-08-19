@@ -1,7 +1,9 @@
 // pages/rss/list.js
 Page({
   data: {
-    url: 'https://bak.yantuz.cn:8000/view.php?v=' + Math.random() + "&url=",
+    // url: 'https://bak.yantuz.cn:8000/view.php?v=' + Math.random() + "&url=",
+    url: 'https://pxy.real9.cn/',
+
     title: '岩兔站',
     items: []
   },

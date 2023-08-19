@@ -107,7 +107,8 @@ Page({
   updateList: function (sites) {
     var newData = this.data.list.slice();
     newData[0].content = sites.map(function (val, key) {
-      return { name: val.name, path: "/pages/rss/list?url=" + encodeURIComponent(val.url) + "&tid=" + key };
+      // return { name: val.name, path: "/pages/rss/list?url=" + encodeURIComponent(val.url) + "&tid=" + key };
+      return { name: val.name, path: "/pages/rss/list?url=" + (val.url) + "&tid=" + key };
     });
 
     this.setData({ list: newData });

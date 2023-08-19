@@ -37,6 +37,8 @@
     "pages/anki/anki",
     "pages/anki/anki_dri",
     "pages/anki/anki2",
+    "pages/anki/anki3",
+    "pages/music/music",
     "pages/about/index"
   ],
   "window": {
@@ -48,8 +50,11 @@
     "enablePullDownRefresh": true 
     
   },
+  
   "debug": false,
   "lazyCodeLoading": "requiredComponents",
+  
+  "requiredBackgroundModes": ["audio"],
   "sitemapLocation": "sitemap.json"
   
 }

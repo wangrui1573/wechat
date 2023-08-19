@@ -1,13 +1,13 @@
 <view class="page">
-<view class="upper" bindtap="showMeaning" style="background-image: url({{ upperBgImage }});  background-size: contain; background-repeat: no-repeat; background-position: center center; height: 100%; width: 100%;">
-  <text class="word">{{ currentWord.word }}</text>
-  <text class="meaning" wx:if="{{ showMeaning }}">{{ currentWord.meaning }}</text>
-</view>
-<!-- <view class="upper" bindtap="showMeaning">
-  <view class="bg-image" style="background-image: url({{ upperBgImage }});"></view>
+<!-- <view class="upper" bindtap="showMeaning" style="background-image: url({{ upperBgImage }});  background-size: contain; background-repeat: no-repeat; background-position: center center; height: 100%; width: 100%;">
   <text class="word">{{ currentWord.word }}</text>
   <text class="meaning" wx:if="{{ showMeaning }}">{{ currentWord.meaning }}</text>
 </view> -->
+<view class="upper" bindtap="showMeaning">
+  <view class="bg-image" style="background-image: url({{ upperBgImage }});"></view>
+  <text class="word">{{ currentWord.word }}</text>
+  <text class="meaning" wx:if="{{ showMeaning }}">{{ currentWord.meaning }}</text>
+</view>
 
 
 

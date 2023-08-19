@@ -1,0 +1,17 @@
+<view class="container">
+  <view class="content">
+    <image
+      class="cover"
+      src="{{ musicData[currentMusicIndex].cover }}"
+      style="transform: rotate({{ rotateDeg }}deg);"
+    ></image>
+    <text class="title">{{ musicData[currentMusicIndex].name }}</text>
+  </view>
+
+  <view class="button-group">
+    <button class="play-button" bindtap="prev">上一首</button>
+    <button class="play-button" bindtap="play" wx:if="{{ !isPlaying }}">播放</button>
+    <button class="pause-button" bindtap="pause" wx:if="{{ isPlaying }}">暂停</button>
+    <button class="play-button" bindtap="next">下一首</button>
+  </view>
+</view>

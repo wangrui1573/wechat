@@ -19,10 +19,10 @@ Page({
     const thisPage = this;
   
     // 显示更新中提示
-    wx.showLoading({
-      title: '单词数据更新中...',
-      mask: true // 遮罩层，防止用户操作
-    });
+    // wx.showLoading({
+    //   title: '单词数据更新中...',
+    //   mask: true // 遮罩层，防止用户操作
+    // });
   
     wx.request({
       url: 'https://db.real9.cn/word/',
@@ -41,6 +41,13 @@ Page({
   
         thisPage.saveStoredData(mergedWords); // 保存更新后的数据到本地
         thisPage.initializeData(mergedWords); // 初始化数据
+  
+        // 弹窗提示更新完成
+        wx.showToast({
+          title: '数据更新完成',
+          icon: 'success',
+          duration: 1500 // 持续时间
+        });
       },
       fail: function (err) {
         // 隐藏更新中提示
@@ -48,23 +55,26 @@ Page({
   
         console.error("远程数据获取失败：", err);
         thisPage.initializeData([]);
+  
+        // 弹窗提示更新失败
+        wx.showToast({
+          title: '数据更新失败',
+          icon: 'none',
+          duration: 1500 // 持续时间
+        });
       }
     });
   },
   
-  onPullDownRefresh: function () {
-    
-    this.onLoad(); //重新加载onLoad()
-   
-    wx.showLoading({
-      title: '单词数据更新中...',
-      mask: true // 遮罩层，防止用户操作
-    });
-  },
+  
+
 
   onLoad: function () {
-    this.updateRemoteData(); // 在页面显示时更新远程数据
-    this.loadStoredData();   // 加载本地数据
+    this.initializeData(this.loadStoredData());
+    this.nextWord();
+    // 在后台更新远程数据
+    this.updateRemoteData(); 
+    
    // 检查本地存储，看是否已经显示过弹窗
    const hasShownModal = wx.getStorageSync('hasShownModal');
 

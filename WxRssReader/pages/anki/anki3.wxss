@@ -69,9 +69,10 @@
 
 
 
-.word {
+.word,
+.meaning {
   position: absolute;
-  font-size: 4vw;
+  font-size: 5vw;
   /* vh 表示视口高度的百分比 */
   white-space: pre-wrap;
   /* 自动换行 */
@@ -82,7 +83,7 @@
   text-align: center; 
   right: 0;
 }
-
+/* 
 .meaning {
   margin-top: 3vh;
   font-size: 2vh;
@@ -91,12 +92,12 @@
   position: absolute;
   transform: translateY(-50%);
   text-align: center; 
-  padding: 10rpx; /* 顶部和左右添加间距 */
+  padding: 10rpx;
   top: 15vw; 
   left: 0;
   right: 0;
-  /* 自动换行 */
-}
+ 
+} */
 
 /* 下半部分按钮排列 */
 .lower {

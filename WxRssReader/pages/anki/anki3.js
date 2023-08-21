@@ -5,6 +5,7 @@ Page({
     words_real: [],          // 存储单词列表
     currentWord: null,  // 当前展示的单词
     currentIndex: -1,   // 当前单词在列表中的索引
+    hideWord: false,
     showMeaning: false, // 是否显示单词的含义
     lesson: 0           // 当前课程编号
   },
@@ -22,9 +23,11 @@ Page({
     const currentWord = this.data.currentWord;
     if (currentWord) {
       const newShowMeaning = !this.data.showMeaning;
+      const newhideWord = !this.data.hideWord;
       const bgImageUrl = newShowMeaning ? currentWord.url2 : currentWord.url1;
       this.setData({
         showMeaning: newShowMeaning,
+        hideWord: newhideWord,
         upperBgImage: bgImageUrl
       });
     }
@@ -101,8 +104,8 @@ Page({
     const updatedWords = this.data.words.map(word => {
       if (this.data.lesson === 0 || word.lesson === this.data.lesson) {
         return {
-          word: word.word,
           _id: word._id,
+          word: word.word,
           meaning: word.meaning,
           lesson: word.lesson,
           url1: word.url1,
@@ -177,7 +180,8 @@ Page({
 
   // 点击单词区域，显示单词含义
   onWordBlockClick: function () {
-    this.setData({ showMeaning: true });
+    this.setData({ showMeaning: true,
+      hideWord: true   });
   },
 
   // 点击按钮，更新单词的学习进度

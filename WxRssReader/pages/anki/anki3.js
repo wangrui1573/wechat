@@ -18,6 +18,25 @@ Page({
     this.nextWord();        // 显示下一个单词
   },
 
+
+  // 在methods中添加
+  openImages: function () {
+
+    const currentWord = this.data.currentWord;
+
+    if (currentWord) {
+
+      const url1 = currentWord.url1;
+      const url2 = currentWord.url2;
+
+      wx.previewImage({
+        urls: [url1, url2]
+      });
+
+    }
+
+  },
+
   // 切换显示单词的含义
   showMeaning: function () {
     const currentWord = this.data.currentWord;
@@ -45,15 +64,15 @@ Page({
   navigateBack: function () {
     wx.navigateBack({
       delta: 1, // 返回的页面数，1表示返回上一页
-      success: function(res){
+      success: function (res) {
         // 通过options参数传递参数
         wx.navigateTo({
           url: '../anki/anki_dri_real?refresh=true'
         })
-        
-      } 
+
+      }
     });
-    
+
   },
 
   // 保存更新后的单词数据到本地存储
@@ -117,10 +136,10 @@ Page({
     });
 
     // 重置所有单词的学习进度为“忘记”
-  
-  
+
+
     console.log("更新数据:", updatedWords);
-    
+
     // 更新本地存储中的数据
     const allWords = wx.getStorageSync("words_real") || [];
     const updatedWordsInStorage = allWords.map(word => {
@@ -130,9 +149,9 @@ Page({
       }
       return word;
     });
-    
+
     wx.setStorageSync("words_real", updatedWordsInStorage); // 更新本地数据
-    
+
     this.setData({
       words: updatedWords,
       currentWord: updatedWords[this.data.currentIndex],
@@ -140,7 +159,7 @@ Page({
     });
     this.nextWord();
   },
-  
+
 
   nextWord: function () {
     const wordArray = this.data.words.filter(word => word.status >= 1);
@@ -148,23 +167,23 @@ Page({
       this.showAllWordsLearnedToast();
       return;
     }
-  
+
     const nextIndex = Math.floor(Math.random() * wordArray.length);
     const currentWord = wordArray[nextIndex];
-  
+
     // 根据当前单词的情况定义 url1
     const url1 = currentWord.url1;
-  
+
     // 调用朗读方法
     // this.speakText(currentWord.word);
-  
+
     this.setData({
       currentWord: currentWord,
       currentIndex: nextIndex,
       showMeaning: false,
       upperBgImage: url1 // 设置为 url1 的值
     });
-  
+
     const t2 = this.data.words.filter(word => word.status === 0).length;
     const t1 = this.data.words.length;
     const t3 = ((t2 / t1) * 100).toFixed(1);
@@ -174,14 +193,16 @@ Page({
       t3: t3
     });
   },
-  
 
-  
+
+
 
   // 点击单词区域，显示单词含义
   onWordBlockClick: function () {
-    this.setData({ showMeaning: true,
-      hideWord: true   });
+    this.setData({
+      showMeaning: true,
+      hideWord: true
+    });
   },
 
   // 点击按钮，更新单词的学习进度

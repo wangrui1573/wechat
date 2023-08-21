@@ -1,13 +1,13 @@
 <view class="page">
-<!-- <view class="upper" bindtap="showMeaning" style="background-image: url({{ upperBgImage }});  background-size: contain; background-repeat: no-repeat; background-position: center center; height: 100%; width: 100%;">
-  <text class="word">{{ currentWord.word }}</text>
-  <text class="meaning" wx:if="{{ showMeaning }}">{{ currentWord.meaning }}</text>
-</view> -->
-<view class="upper" bindtap="showMeaning">
-  <view class="bg-image" style="background-image: url({{ upperBgImage }});"></view>
+<view class="upper" bindtap="showMeaning" style="background-image: url({{ upperBgImage }});  background-size: contain; background-repeat: no-repeat; background-position: center center; height: 100%; width: 100%;">
   <text class="word">{{ currentWord.word }}</text>
   <text class="meaning" wx:if="{{ showMeaning }}">{{ currentWord.meaning }}</text>
 </view>
+<!-- <view class="upper" bindtap="showMeaning">
+  <view class="bg-image" style="background-image: url({{ upperBgImage }});"></view>
+  <text class="word">{{ currentWord.word }}</text>
+  <text class="meaning" wx:if="{{ showMeaning }}">{{ currentWord.meaning }}</text>
+</view> -->
 
 
 
@@ -18,8 +18,8 @@
     <view class="button-green" bindtap="onButtonClick" data-text="牢记">牢记</view>
   </view>
   <view class="lower-status">
-    <view class="reset-button" bindtap="resetStatus">⌛重置学习进度</view>
-    <view class="read" bindtap="read">朗读🔈</view>
+    <view class="reset-button" bindtap="resetStatus">⌛重置进度</view>
+    <view class="read" bindtap="read">🔈</view>
     <view class="word-count-container" bindtap="showProgressModal">
       <progress class="progress" percent="{{ t3 }}" strokeWidth="10" show-info="true" activeColor="#007bff"></progress>
       <text class="word-count">🚩单词数：{{ t2 }}/{{ t1 }}</text>

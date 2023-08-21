@@ -8,7 +8,7 @@ Page({
     tools2: [
       { name: '工具3', icon: 'https://gist.githubusercontent.com/real233/c00d9431cd79c160692016849e96f805/raw/traffic.svg', url: '/pages/music/music' },
       { name: '工具4', icon: 'https://gist.githubusercontent.com/real233/c00d9431cd79c160692016849e96f805/raw/emby.svg', url: '/pages/anki/anki_dri' },
-      { name: '工具5', icon: 'https://gist.githubusercontent.com/real233/c00d9431cd79c160692016849e96f805/raw/emby.svg', url: '/pages/anki/anki_dri' },
+      { name: '工具5', icon: 'https://gist.githubusercontent.com/real233/c00d9431cd79c160692016849e96f805/raw/emby.svg', url: '/pages/anki/anki3?lesson=20' },
       // 添加更多工具...
     ],
     tools3: [

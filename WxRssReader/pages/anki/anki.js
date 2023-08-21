@@ -1,3 +1,4 @@
+var app = getApp()
 
 
 
@@ -92,8 +93,13 @@ Page({
      
    }
  },
-
- 
+ //朗读单词
+ read: function () {
+  const currentWord = this.data.currentWord;
+  if (currentWord) {
+    app.speakText(currentWord.word);
+  }
+},
   
   mergeWords: function (localWords, remoteWords) {
     if (!localWords || localWords.length === 0) {

@@ -31,7 +31,7 @@ Page({
       
       this.setData({
         showMeaning: newShowMeaning,
-        upperBgImage: bgImageUrl
+        // upperBgImage: bgImageUrl
       });
     }
   },
@@ -196,7 +196,7 @@ Page({
       currentWord: currentWord,
       currentIndex: nextIndex,
       showMeaning: false,
-      upperBgImage: url1 // 设置为 url1 的值
+      // upperBgImage: url1 // 设置为 url1 的值
     });
   
     const t2 = this.data.words.filter(word => word.status === 0).length;

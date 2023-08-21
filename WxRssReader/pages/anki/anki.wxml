@@ -10,7 +10,8 @@
     <view class="button-green" bindtap="onButtonClick" data-text="牢记">牢记</view>
   </view>
   <view class="lower-status">
-    <view class="reset-button" bindtap="resetStatus">⌛重置学习进度</view>
+    <view class="reset-button" bindtap="resetStatus">⌛重置进度</view>
+    <view class="read" bindtap="read">🔈</view>
     <view class="word-count-container" bindtap="showProgressModal">
       <progress class="progress" percent="{{ t3 }}" strokeWidth="10" show-info="true" activeColor="#007bff"></progress>
       <text class="word-count">🚩单词数：{{ t2 }}/{{ t1 }}</text>

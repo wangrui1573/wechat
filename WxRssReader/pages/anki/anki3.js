@@ -1,9 +1,8 @@
 var app = getApp()
 
-
 Page({
   data: {
-    words: [],          // 存储单词列表
+    words_real: [],          // 存储单词列表
     currentWord: null,  // 当前展示的单词
     currentIndex: -1,   // 当前单词在列表中的索引
     showMeaning: false, // 是否显示单词的含义
@@ -12,13 +11,9 @@ Page({
 
   // 页面加载时执行的函数
   onLoad: function (options) {
-
-    
     const lesson = options.lesson ? parseInt(options.lesson) : 0;
     this.setData({ lesson: lesson });
-
     this.loadStoredData(); // 加载本地存储中的数据
-    
     this.nextWord();        // 显示下一个单词
   },
 
@@ -28,19 +23,16 @@ Page({
     if (currentWord) {
       const newShowMeaning = !this.data.showMeaning;
       const bgImageUrl = newShowMeaning ? currentWord.url2 : currentWord.url1;
-      
       this.setData({
         showMeaning: newShowMeaning,
         upperBgImage: bgImageUrl
       });
     }
   },
-  
-  
-  
+
   // 加载本地存储中的数据
   loadStoredData: function () {
-    const allWords = wx.getStorageSync("words") || [];
+    const allWords = wx.getStorageSync("words_real") || [];
     const filteredWords = this.data.lesson > 0 ? allWords.filter(word => word.lesson === this.data.lesson) : allWords;
     this.setData({
       words: filteredWords
@@ -53,7 +45,7 @@ Page({
       success: function(res){
         // 通过options参数传递参数
         wx.navigateTo({
-          url: '../anki/anki_dri?refresh=true'
+          url: '../anki/anki_dri_real?refresh=true'
         })
         
       } 
@@ -70,7 +62,7 @@ Page({
       return word;
     });
 
-    wx.setStorageSync("words", words);
+    wx.setStorageSync("words_real", words);
     this.setData({
       words: words
     });
@@ -110,8 +102,11 @@ Page({
       if (this.data.lesson === 0 || word.lesson === this.data.lesson) {
         return {
           word: word.word,
+          _id: word._id,
           meaning: word.meaning,
           lesson: word.lesson,
+          url1: word.url1,
+          url2: word.url2,
           status: 3
         };
       }
@@ -124,7 +119,7 @@ Page({
     console.log("更新数据:", updatedWords);
     
     // 更新本地存储中的数据
-    const allWords = wx.getStorageSync("words") || [];
+    const allWords = wx.getStorageSync("words_real") || [];
     const updatedWordsInStorage = allWords.map(word => {
       const updatedWord = updatedWords.find(updated => updated.word === word.word);
       if (updatedWord) {
@@ -133,7 +128,7 @@ Page({
       return word;
     });
     
-    wx.setStorageSync("words", updatedWordsInStorage); // 更新本地数据
+    wx.setStorageSync("words_real", updatedWordsInStorage); // 更新本地数据
     
     this.setData({
       words: updatedWords,
@@ -143,39 +138,7 @@ Page({
     this.nextWord();
   },
   
-  
 
-  // 显示下一个单词
-  // nextWord: function () {
-  //   const wordArray = this.data.words.filter(word => word.status >= 1);
-  //   if (wordArray.length === 0) {
-  //     this.showAllWordsLearnedToast();
-  //     return;
-  //   }
-  
-  //   const nextIndex = Math.floor(Math.random() * wordArray.length);
-  //   const currentWord = wordArray[nextIndex];
-  
-  //   // 根据当前单词的情况定义 url1
-  //   const url1 = currentWord.url1;
-
-  //   this.setData({
-  //     currentWord: currentWord,
-  //     currentIndex: nextIndex,
-  //     showMeaning: false,
-  //     upperBgImage: url1 // 设置为 url1 的值
-  //   });
-  
-  //   const t2 = this.data.words.filter(word => word.status === 0).length;
-  //   const t1 = this.data.words.length;
-  //   const t3 = ((t2 / t1) * 100).toFixed(1);
-  //   this.setData({
-  //     t2: t2,
-  //     t1: t1,
-  //     t3: t3
-  //   });
-  // },
-  
   nextWord: function () {
     const wordArray = this.data.words.filter(word => word.status >= 1);
     if (wordArray.length === 0) {
@@ -247,14 +210,14 @@ Page({
     });
 
     // 更新本地存储中的数据
-    const allWords = wx.getStorageSync("words") || [];
+    const allWords = wx.getStorageSync("words_real") || [];
     const updatedWordsInStorage = allWords.map(word => {
       if (word.word === updatedWord.word) {
         return updatedWord;
       }
       return word;
     });
-    wx.setStorageSync("words", updatedWordsInStorage);
+    wx.setStorageSync("words_real", updatedWordsInStorage);
 
     // 显示下一个单词
     this.nextWord();

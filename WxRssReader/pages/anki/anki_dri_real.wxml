@@ -1,0 +1,32 @@
+<!-- anki_dri.wxml -->
+<view class="container">
+  <view class="doc-title zan-hairline--bottom">课程列表</view>
+
+  <block wx:for="{{ lessonList }}" wx:for-item="item" wx:for-index="index" wx:key="lesson">
+
+    <view class="zan-panel">
+      <view class="zan-card" bindtap="goToAnki" data-lesson="{{ item.lesson }}">
+        <view class="zan-card__thumb">
+          <image class="zan-card__img"
+            src="https://gist.githubusercontent.com/wangrui1573/70c9954014e1ebdf57727e20a66918f8/raw/sub.svg"
+            mode="aspectFit"
+          ></image>
+        </view>
+        <view class="zan-card__detail">
+          <view class="zan-card__detail-row">
+            <view class="zan-card__left-col zan-font-20 ">
+               第{{ item.lesson }}课
+            </view>
+          </view>
+
+          <view class="zan-card__detail-row zan-c-gray-darker">
+            <view class="zan-card__right-col">单词数量：{{ item.wordCount }}</view>
+            <view class="zan-card__left-col">
+              学习进度：{{ item.progress }}%
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

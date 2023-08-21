@@ -36,8 +36,10 @@
     "pages/tools/tools",
     "pages/anki/anki",
     "pages/anki/anki_dri",
+    "pages/anki/anki_dri_real",
     "pages/anki/anki2",
     "pages/anki/anki3",
+    "pages/anki/anki_real",
     "pages/music/music",
     "pages/about/index"
   ],

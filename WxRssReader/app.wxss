@@ -63,7 +63,6 @@
   height: 24px;
 }
 
-
 .nav-icon-image {
   width: 48rpx;
   height: 48rpx;
@@ -75,4 +74,10 @@
 }
 .spacer {
   height: 30rpx; /* 调整空白的高度 */
+}
+.spacer60 {
+  height: 60rpx; /* 调整空白的高度 */
+}
+.spacer90 {
+  height: 90rpx; /* 调整空白的高度 */
 }

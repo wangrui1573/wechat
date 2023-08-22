@@ -1,6 +1,5 @@
 var app = getApp()
 
-
 Page({
   data: {
     words: [],          // 存储单词列表
@@ -12,13 +11,9 @@ Page({
 
   // 页面加载时执行的函数
   onLoad: function (options) {
-
-    
     const lesson = options.lesson ? parseInt(options.lesson) : 0;
     this.setData({ lesson: lesson });
-
     this.loadStoredData(); // 加载本地存储中的数据
-    
     this.nextWord();        // 显示下一个单词
   },
 
@@ -28,15 +23,12 @@ Page({
     if (currentWord) {
       const newShowMeaning = !this.data.showMeaning;
       const bgImageUrl = newShowMeaning ? currentWord.url2 : currentWord.url1;
-      
       this.setData({
         showMeaning: newShowMeaning,
         // upperBgImage: bgImageUrl
       });
     }
   },
-  
-  
   
   // 加载本地存储中的数据
   loadStoredData: function () {
@@ -120,7 +112,6 @@ Page({
 
     // 重置所有单词的学习进度为“忘记”
   
-  
     console.log("更新数据:", updatedWords);
     
     // 更新本地存储中的数据
@@ -143,8 +134,6 @@ Page({
     this.nextWord();
   },
   
-  
-
   // 显示下一个单词
   // nextWord: function () {
   //   const wordArray = this.data.words.filter(word => word.status >= 1);
@@ -186,12 +175,6 @@ Page({
     const nextIndex = Math.floor(Math.random() * wordArray.length);
     const currentWord = wordArray[nextIndex];
   
-    // 根据当前单词的情况定义 url1
-    const url1 = currentWord.url1;
-  
-    // 调用朗读方法
-    // this.speakText(currentWord.word);
-  
     this.setData({
       currentWord: currentWord,
       currentIndex: nextIndex,
@@ -209,9 +192,6 @@ Page({
     });
   },
   
-
-  
-
   // 点击单词区域，显示单词含义
   onWordBlockClick: function () {
     this.setData({ showMeaning: true });

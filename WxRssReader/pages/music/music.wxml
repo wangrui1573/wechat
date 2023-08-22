@@ -13,7 +13,7 @@
     <button class="play-button" bindtap="play" wx:if="{{ !isPlaying }}">▶️</button>
     <button class="pause-button" bindtap="pause" wx:if="{{ isPlaying }}">⏸️</button>
     <button class="play-button" bindtap="next">⏭️</button>
-    <button class="play-button" bindtap="toggleSongList">🎵</button>
+    <button class="play-button" bindtap="toggleSongList"><view class="iconfont wx-library"></view></button>
   </view>
 </view>
 

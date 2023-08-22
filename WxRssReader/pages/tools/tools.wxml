@@ -4,7 +4,7 @@
   <view class="grid">
     <block wx:for="{{ tools }}" wx:key="name">
       <navigator url="{{ item.url }}" class="grid-item">
-        <image src="{{ item.icon }}" class="grid-icon"></image>
+        <view class="iconfont {{ item.icon }}"></view>
         <text class="grid-text">{{ item.name }}</text>
       </navigator>
     </block>
@@ -15,7 +15,7 @@
   <view class="grid">
     <block wx:for="{{ tools2 }}" wx:key="name">
       <navigator url="{{ item.url }}" class="grid-item">
-        <image src="{{ item.icon }}" class="grid-icon"></image>
+        <view class="iconfont {{ item.icon }}"></view>
         <text class="grid-text">{{ item.name }}</text>
       </navigator>
     </block>
@@ -26,7 +26,7 @@
 <view class="grid">
 <block wx:for="{{ tools3 }}" wx:key="name" wx:for-index="index">
   <view class="grid-item" bindtap="openMiniProgram" data-index="{{ index }}">
-    <image src="{{ item.icon }}" class="grid-icon"></image>
+    <view class="iconfont {{ item.icon }}"></view>
     <text class="grid-text">{{ item.name }}</text>
   </view>
 </block>

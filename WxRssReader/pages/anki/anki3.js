@@ -1,3 +1,4 @@
+// pages/anki/anki3.js 图片问答主页
 var app = getApp()
 
 Page({
@@ -160,29 +161,33 @@ Page({
     this.nextWord();
   },
 
-
+  //切换单词逻辑
   nextWord: function () {
-    const wordArray = this.data.words.filter(word => word.status >= 1);
-    if (wordArray.length === 0) {
+    // 过滤状态大于0的单词
+    let wordArray = this.data.words.filter(word => word.status > 0);
+
+    // 再过滤掉当前单词
+    wordArray = wordArray.filter(word => word !== this.data.currentWord);
+
+    // 如果过滤完为空,则返回
+    if (wordArray.length == 0) {
       this.showAllWordsLearnedToast();
       return;
     }
 
+    // 随机索引
     const nextIndex = Math.floor(Math.random() * wordArray.length);
-    const currentWord = wordArray[nextIndex];
 
-    // 根据当前单词的情况定义 url1
-    const url1 = currentWord.url1;
+    // 选择下一单词
+    const nextWord = wordArray[nextIndex];
 
-    // 调用朗读方法
-    // this.speakText(currentWord.word);
-
+    // 设置下一单词
     this.setData({
-      currentWord: currentWord,
+      currentWord: nextWord,
       currentIndex: nextIndex,
-      showMeaning: false,
-      upperBgImage: url1 // 设置为 url1 的值
+      upperBgImage: nextWord.url1
     });
+
 
     const t2 = this.data.words.filter(word => word.status === 0).length;
     const t1 = this.data.words.length;
@@ -243,6 +248,7 @@ Page({
       return word;
     });
     wx.setStorageSync("words_real", updatedWordsInStorage);
+
 
     // 显示下一个单词
     this.nextWord();

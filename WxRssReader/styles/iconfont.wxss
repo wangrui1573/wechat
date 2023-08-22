@@ -1,0 +1,57 @@
+@font-face {
+    font-family: "iconfont"; /* Project id 4220109 */
+    /* Color fonts */
+    src: 
+         url('//at.alicdn.com/t/c/font_4220109_1nx1hmxco2d.woff2?t=1692685035787') format('woff2'),
+         url('//at.alicdn.com/t/c/font_4220109_1nx1hmxco2d.woff?t=1692685035787') format('woff'),
+         url('//at.alicdn.com/t/c/font_4220109_1nx1hmxco2d.ttf?t=1692685035787') format('truetype');
+  }
+  
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 28px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .wx-guanyuwo:before {
+    content: "\e600";
+  }
+  
+  .wx-gongju-:before {
+    content: "\e633";
+  }
+  
+  .wx-abc:before {
+    content: "\e67f";
+  }
+  
+  .wx-rss:before {
+    content: "\ea03";
+  }
+  
+  .wx-jiaoyu:before {
+    content: "\e624";
+  }
+  
+  .wx-danmu:before {
+    content: "\e625";
+  }
+  
+  .wx-duoIP:before {
+    content: "\e7c9";
+  }
+  
+  .wx-shudu2:before {
+    content: "\e617";
+  }
+  
+  .wx-wode-shududaochu:before {
+    content: "\e609";
+  }
+  
+  .wx-emby:before {
+    content: "\e60c";
+  }
+  

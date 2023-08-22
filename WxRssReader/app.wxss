@@ -1,5 +1,6 @@
 @import "dist/index.wxss";
 @import "pages/wxParse/wxParse.wxss";
+@import './styles/iconfont.wxss';
 
 .container {
   background: #F9F9F9;

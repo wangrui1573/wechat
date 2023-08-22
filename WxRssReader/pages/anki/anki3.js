@@ -19,23 +19,16 @@ Page({
     this.nextWord();        // 显示下一个单词
   },
 
-
   // 在methods中添加
   openImages: function () {
-
     const currentWord = this.data.currentWord;
-
     if (currentWord) {
-
       const url1 = currentWord.url1;
       const url2 = currentWord.url2;
-
       wx.previewImage({
         urls: [url1, url2]
       });
-
     }
-
   },
 
   // 切换显示单词的含义
@@ -70,10 +63,8 @@ Page({
         wx.navigateTo({
           url: '../anki/anki_dri_real?refresh=true'
         })
-
       }
     });
-
   },
 
   // 保存更新后的单词数据到本地存储
@@ -84,7 +75,6 @@ Page({
       }
       return word;
     });
-
     wx.setStorageSync("words_real", words);
     this.setData({
       words: words
@@ -95,7 +85,6 @@ Page({
   showProgressModal: function () {
     const learnedWords = this.data.words.filter(word => word.status === 0).length;
     const totalWords = this.data.words.length;
-
     wx.showModal({
       title: '点击牢记将视为已学，不再出现',
       content: `已学单词：${learnedWords}\n未学单词：${totalWords - learnedWords}`,
@@ -112,6 +101,7 @@ Page({
       duration: 2000,
     });
   },
+
   //朗读当前单词
   read: function () {
     const currentWord = this.data.currentWord;
@@ -119,6 +109,7 @@ Page({
       app.speakText(currentWord.word);
     }
   },
+
   // 重置所有单词的学习进度为“忘记”
   resetStatus: function () {
     const updatedWords = this.data.words.map(word => {
@@ -135,12 +126,8 @@ Page({
       }
       return word;
     });
-
     // 重置所有单词的学习进度为“忘记”
-
-
-    console.log("更新数据:", updatedWords);
-
+    // console.log("更新数据:", updatedWords);
     // 更新本地存储中的数据
     const allWords = wx.getStorageSync("words_real") || [];
     const updatedWordsInStorage = allWords.map(word => {
@@ -150,9 +137,7 @@ Page({
       }
       return word;
     });
-
     wx.setStorageSync("words_real", updatedWordsInStorage); // 更新本地数据
-
     this.setData({
       words: updatedWords,
       currentWord: updatedWords[this.data.currentIndex],
@@ -165,30 +150,27 @@ Page({
   nextWord: function () {
     // 过滤状态大于0的单词
     let wordArray = this.data.words.filter(word => word.status > 0);
-
-    // 再过滤掉当前单词
-    wordArray = wordArray.filter(word => word !== this.data.currentWord);
-
+    if (wordArray.length <= 1) {
+      // 仅剩一个或更少,不过滤
+    } else {
+      // 多个单词时过滤当前词
+      wordArray = wordArray.filter(word => word !== this.data.currentWord);
+    }
     // 如果过滤完为空,则返回
     if (wordArray.length == 0) {
       this.showAllWordsLearnedToast();
       return;
     }
-
     // 随机索引
     const nextIndex = Math.floor(Math.random() * wordArray.length);
-
     // 选择下一单词
     const nextWord = wordArray[nextIndex];
-
     // 设置下一单词
     this.setData({
       currentWord: nextWord,
       currentIndex: nextIndex,
       upperBgImage: nextWord.url1
     });
-
-
     const t2 = this.data.words.filter(word => word.status === 0).length;
     const t1 = this.data.words.length;
     const t3 = ((t2 / t1) * 100).toFixed(1);
@@ -198,10 +180,7 @@ Page({
       t3: t3
     });
   },
-
-
-
-
+  
   // 点击单词区域，显示单词含义
   onWordBlockClick: function () {
     this.setData({
@@ -248,7 +227,6 @@ Page({
       return word;
     });
     wx.setStorageSync("words_real", updatedWordsInStorage);
-
 
     // 显示下一个单词
     this.nextWord();

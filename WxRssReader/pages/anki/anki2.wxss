@@ -10,14 +10,6 @@
   background-color: #f7f7f7;
 }
 
-/* .middle {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 10vh;
-  width: 100%;
-} */
-/* 上半部分单词展示和含义 */
 .upper {
   display: flex;
   flex-direction: column;
@@ -37,8 +29,6 @@
   
 }
 
-
-
  .bg-image {
   
   background-size: contain;
@@ -48,10 +38,6 @@
   width: 100vh;
  
 } 
-
-
-
-
 
 .word {
   font-size: 5vh;
@@ -166,7 +152,6 @@
   cursor: pointer;
   /* 鼠标悬停时显示指针形状 */
 }
-
 
 .icon {
   font-size: 40px;

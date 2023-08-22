@@ -1,13 +1,18 @@
 <view class="page">
   <!-- <view class="upper" bindtap="showMeaning">
-    <text class="word">{{ currentWord.word }}</text>
-    <text class="meaning" wx:if="{{ showMeaning }}">{{ currentWord.meaning }}</text>
-  </view> -->
-  <view class="upper" bindtap="showMeaning">
-  <view class="bg-image" style="background-image: url({{ upperBgImage }});"></view>
   <text class="word">{{ currentWord.word }}</text>
   <text class="meaning" wx:if="{{ showMeaning }}">{{ currentWord.meaning }}</text>
+</view> -->
+
+<view wx:if="{{ currentWord.url1 }}" class="upper" bindtap="showMeaning" style="background-image: url({{ upperBgImage }}) ">
+  <text wx:if="{{ !hideWord }}" class="word">{{ currentWord.word }}</text>
+  <text class="meaning" wx:if="{{ showMeaning }}">{{ currentWord.meaning }}</text>
 </view>
+<view wx:else class="upper2" bindtap="showMeaning" style="background-image: url({{ upperBgImage }}) ">
+  <text wx:if="{{ !hideWord }}" class="word2">{{ currentWord.word }}</text>
+  <text class="meaning2" wx:if="{{ showMeaning }}">{{ currentWord.meaning }}</text>
+</view>
+
   <view class="lower-buttons">
     <view class="button-red" bindtap="onButtonClick" data-text="忘记">忘记</view>
     <view class="button-yellow" bindtap="onButtonClick" data-text="困难">困难</view>
@@ -22,6 +27,9 @@
       <text class="word-count">🚩单词数：{{ t2 }}/{{ t1 }}</text>
     </view>
     <!-- 悬浮图标，点击跳转到anki_dri页面 -->
+<view class="floating-button" bindtap="openImages" wx:if="{{ currentWord.url1 }}">
+  <text class="icon">🔍</text>
+</view>
     <navigator url="/pages/anki/anki_dri_real" open-type="redirect">
       <view class="floating-icon">
         <text class="icon">📚</text>

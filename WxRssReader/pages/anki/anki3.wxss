@@ -10,15 +10,35 @@
   background-color: #f7f7f7;
 }
 
-/* .middle {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 10vh;
-  width: 100%;
-} */
 /* 上半部分单词展示和含义 */
+.upper2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: white;
+}
 
+.read2 {
+  flex: 1;
+  font-size: 24px;
+  text-align: center;
+  margin: 0;
+}
+
+.word2 {
+  font-size: 8vh; /* vh 表示视口高度的百分比 */
+  white-space: normal; /* 自动换行 */
+  /* word-wrap: break-word; 换行时断开单词 */
+}
 
 .upper {
   display: flex;
@@ -46,19 +66,6 @@
 
 }
 
-
-
-/* 
- .bg-image {
-  
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  height: 100vw;
-  width: 52vh;
- 
-}  */
-
 .bg-image {
   position: absolute;
   width: 100%;
@@ -68,19 +75,12 @@
   background-position: center;
 }
 
-/* .upper {
-  position: relative;
-  height: 100%;
-} */
-
-
 .floating-button{
   position: fixed;
   bottom: 90vh;
   /* 距离底部的距离 */
   right: 4vw;
   /* 距离右侧的距离 */
-
 
 }
 
@@ -214,7 +214,6 @@
   cursor: pointer;
   /* 鼠标悬停时显示指针形状 */
 }
-
 
 .icon {
   font-size: 40px;

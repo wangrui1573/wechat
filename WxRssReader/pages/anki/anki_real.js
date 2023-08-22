@@ -2,22 +2,18 @@
 
 var app = getApp()
 
-
-
 Page({
   data: {
     words_real: [],
     currentWord: null,
     currentIndex: -1,
+    hideWord: false,
     learningPhase: 3,
     showMeaning: false,
     t1: 0,
     t2: 0,
   },
   
-
-
-
   updateRemoteData: function () {
     const thisPage = this;
   
@@ -69,9 +65,6 @@ Page({
     });
   },
   
-  
-
-
   onLoad: function () {
     this.initializeData(this.loadStoredData());
     this.nextWord();
@@ -145,11 +138,8 @@ Page({
 
     return mergedWords;
     
-    
   },
    
-  
-
   initializeData: function (initialWords) {
     wx.setStorageSync("words_real", initialWords);
     this.setData({
@@ -174,10 +164,30 @@ Page({
     });
   },
 
+  openImages: function () {
+    const currentWord = this.data.currentWord;
+    if (currentWord) {
+      const url1 = currentWord.url1;
+      const url2 = currentWord.url2;
+      wx.previewImage({
+        urls: [url1, url2]
+      });
+    }
+  },
+
+  // 切换显示单词的含义
   showMeaning: function () {
-    this.setData({
-      showMeaning: !this.data.showMeaning
-    });
+    const currentWord = this.data.currentWord;
+    if (currentWord) {
+      const newShowMeaning = !this.data.showMeaning;
+      const newhideWord = !this.data.hideWord;
+      const bgImageUrl = newShowMeaning ? currentWord.url2 : currentWord.url1;
+      this.setData({
+        showMeaning: newShowMeaning,
+        hideWord: newhideWord,
+        upperBgImage: bgImageUrl
+      });
+    }
   },
 
   loadStoredData: function () {
@@ -200,29 +210,40 @@ Page({
     });
   },
 
-  nextWord: function () {
-    const wordArray = this.data.words.filter(word => word.status >= 1);
-    if (wordArray.length === 0) {
-      this.showAllWordsLearnedToast();
-      return;
-    }
-  
-    const nextIndex = Math.floor(Math.random() * wordArray.length);
-    this.setData({
-      currentWord: wordArray[nextIndex],
-      currentIndex: nextIndex,
-      showMeaning: false
-    });
-  
+//切换单词逻辑
+nextWord: function () {
+  // 过滤状态大于0的单词
+  let wordArray = this.data.words.filter(word => word.status > 0);
+  if (wordArray.length <= 1) {
+    // 仅剩一个或更少,不过滤
+  } else {
+    // 多个单词时过滤当前词
+    wordArray = wordArray.filter(word => word !== this.data.currentWord);
+  }
+  // 如果过滤完为空,则返回
+  if (wordArray.length == 0) {
+    this.showAllWordsLearnedToast();
+    return;
+  }
+  // 随机索引
+  const nextIndex = Math.floor(Math.random() * wordArray.length);
+  // 选择下一单词
+  const nextWord = wordArray[nextIndex];
+  // 设置下一单词
+  this.setData({
+    currentWord: nextWord,
+    currentIndex: nextIndex,
+    upperBgImage: nextWord.url1
+  });
   const t2 = this.data.words.filter(word => word.status === 0).length;
   const t1 = this.data.words.length;
-  const t3 = (t2 / t1 * 100).toFixed(1); // 计算百分比，保留两位小数
+  const t3 = ((t2 / t1) * 100).toFixed(1);
   this.setData({
     t2: t2,
     t1: t1,
     t3: t3
-    });
-  },
+  });
+},
 
   onWordBlockClick: function () {
     this.setData({ showMeaning: true });
@@ -231,9 +252,10 @@ Page({
   resetStatus: function () {
     const updatedWords = this.data.words.map(word => {
       return {
+        _id: word._id,
         word: word.word,
         meaning: word.meaning,
-        lesson: word.lesson, // 更新lesson栏位
+        lesson: word.lesson,
         url1: word.url1,
         url2: word.url2,
         status: 3
@@ -252,7 +274,6 @@ Page({
     this.nextWord();
 },
 
-  
   onButtonClick: function (event) {
     const buttonText = event.currentTarget.dataset.text;
     const word = this.data.currentWord;
@@ -272,8 +293,6 @@ Page({
     this.nextWord();
     
   },
-
-  
 
   /**
    * 生命周期函数--监听页面初次渲染完成

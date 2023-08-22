@@ -13,7 +13,26 @@
     <button class="play-button" bindtap="play" wx:if="{{ !isPlaying }}">▶️</button>
     <button class="pause-button" bindtap="pause" wx:if="{{ isPlaying }}">⏸️</button>
     <button class="play-button" bindtap="next">⏭️</button>
-    <button class="play-button" bindtap="list">🎵</button>
+    <button class="play-button" bindtap="toggleSongList">🎵</button>
   </view>
 </view>
 
+<view class="popup-mask" wx:if="{{ showSongList }}">
+  <view class="popup {{ showSongList ? 'active' : '' }}">
+    <!-- 歌曲列表 -->
+   <view class="song-list">
+  <block wx:for="{{ musicData }}" wx:key="index">
+    <view class="song-item" bindtap="playSong" data-index="{{ index }}">
+      <text class="song-info">
+        <text class="song-name">{{ item.name }}</text>
+        <text class="song-artist"> ({{ item.author }})</text>
+      </text>
+    </view>
+  </block>
+</view>
+
+    <!-- <button class="close-button" bindtap="toggleSongList">关闭</button> -->
+  </view>
+</view>
+
+<view class="transparent-mask" wx:if="{{ showSongList }}" bindtap="closeSongList"></view>

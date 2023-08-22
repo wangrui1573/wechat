@@ -5,11 +5,40 @@ Page({
     currentMusicIndex: 0, // 当前播放歌曲的索引
     isPlaying: false, // 是否正在播放
     rotateDeg: 0, // 旋转角度
+    showSongList: false, // 控制歌曲列表弹出层的显示
     playMode: 'sequence' // 播放模式：'sequence'为顺序播放，'random'为随机播放，'loop'为循环播放
   },
 
   onLoad: function () {
+    const localMusicData = wx.getStorageSync('musicData');
+    if (localMusicData) {
+      this.setData({
+        musicData: localMusicData
+      });
+    }
     this.updateMusicData();
+  },
+
+  toggleSongList: function () {
+    this.setData({
+      showSongList: !this.data.showSongList
+    });
+  },
+
+  closeSongList: function () {
+    this.setData({
+      showSongList: false
+    });
+  },
+
+  playSong: function (e) {
+    const index = e.currentTarget.dataset.index;
+    const music = this.data.musicData[index];
+
+    wx.playBackgroundAudio({
+      dataUrl: music.link,
+      title: music.name
+    });
   },
 
   updateMusicData: function () {
@@ -18,13 +47,13 @@ Page({
       success: (res) => {
         const remoteMusicData = res.data;
         wx.setStorageSync('musicData', remoteMusicData);
+        this.setData({
+          musicData: remoteMusicData
+        });
         wx.showToast({
           title: '数据更新完成',
           icon: 'success',
           duration: 2000
-        });
-        this.setData({
-          musicData: remoteMusicData
         });
       },
       fail: (err) => {

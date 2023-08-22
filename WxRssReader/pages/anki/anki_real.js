@@ -111,6 +111,7 @@ Page({
           word: localWord.word,
           meaning: remoteWord.meaning,
           lesson: remoteWord.lesson,
+          lessonname: remoteWord.lessonname,
           url1: remoteWord.url1,
           url2: remoteWord.url2,
           status: localWord.status // 保持状态不变
@@ -256,6 +257,7 @@ nextWord: function () {
         word: word.word,
         meaning: word.meaning,
         lesson: word.lesson,
+        lessonname: word.lessonname,
         url1: word.url1,
         url2: word.url2,
         status: 3

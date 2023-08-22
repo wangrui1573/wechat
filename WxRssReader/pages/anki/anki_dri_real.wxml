@@ -15,7 +15,7 @@
         <view class="zan-card__detail">
           <view class="zan-card__detail-row">
             <view class="zan-card__left-col zan-font-20 ">
-               第{{ item.lesson }}课
+               {{ item.lessonname }}
             </view>
           </view>
 

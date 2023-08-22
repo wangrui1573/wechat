@@ -6,11 +6,14 @@
   </view>
   <view class="spacer90"></view>
   <view class="button-group">
-    <button class="play-button" bindtap="loop">🔁</button>
+    <button class="play-button" bindtap="togglePlayMode">
+      {{ playMode === 'sequence' ? '🔁' : playMode === 'random' ? '🔀' : '🔂' }}
+    </button>
     <button class="play-button" bindtap="prev">⏮️</button>
     <button class="play-button" bindtap="play" wx:if="{{ !isPlaying }}">▶️</button>
     <button class="pause-button" bindtap="pause" wx:if="{{ isPlaying }}">⏸️</button>
     <button class="play-button" bindtap="next">⏭️</button>
-    <button class="play-button" bindtap="random">🔀</button>
+    <button class="play-button" bindtap="list">🎵</button>
   </view>
 </view>
+

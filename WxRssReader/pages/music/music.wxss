@@ -15,8 +15,8 @@
   }
   
   .cover {
-    width: 150px;
-    height: 150px;
+    width: 250px;
+    height: 250px;
     border-radius: 50%; /* 切成圆形 */
   }
   
@@ -35,7 +35,7 @@
   .pause-button {
     
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 24px;
     border-radius: 5px;
     cursor: pointer;
   }

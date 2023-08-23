@@ -1,7 +1,7 @@
 Page({
   data: {
     tools: [
-      { name: 'IP计算器', icon: 'wx-rss', url: '/pages/ip/ip' },
+      { name: 'IP计算器', icon: 'wx-duoIP', url: '/pages/ip/ip' },
       { name: '手持弹幕', icon: 'wx-danmu', url: '/pages/sub/sub' },
       // 添加更多工具...
     ],

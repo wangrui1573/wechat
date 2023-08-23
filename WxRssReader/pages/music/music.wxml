@@ -7,12 +7,14 @@
   <view class="spacer90"></view>
   <view class="button-group">
     <button class="play-button" bindtap="togglePlayMode">
-      {{ playMode === 'sequence' ? '🔁' : playMode === 'random' ? '🔀' : '🔂' }}
+      <icon class="{{ playMode === 'sequence' ? 'iconfont wx-shunxubofang' : playMode === 'random' ? 'iconfont wx-suijibofang' : 'iconfont wx-danquxunhuan' }}"></icon>
     </button>
-    <button class="play-button" bindtap="prev">⏮️</button>
-    <button class="play-button" bindtap="play" wx:if="{{ !isPlaying }}">▶️</button>
-    <button class="pause-button" bindtap="pause" wx:if="{{ isPlaying }}">⏸️</button>
-    <button class="play-button" bindtap="next">⏭️</button>
+
+    <button class="play-button" bindtap="prev"><view class="iconfont wx-shangyishou" ></view></button>
+    <button class="play-button" bindtap="play" wx:if="{{ !isPlaying }}"><view class="iconfont wx-bofang" ></view></button>
+    
+    <button class="pause-button" bindtap="pause" wx:if="{{ isPlaying }}"><view class="iconfont wx-zanting" ></view></button>
+    <button class="play-button" bindtap="next"><view class="iconfont wx-xiayishou" ></view></button>
     <button class="play-button" bindtap="toggleSongList"><view class="iconfont wx-library"></view></button>
   </view>
 </view>

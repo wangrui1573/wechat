@@ -42,7 +42,7 @@
     <view class="nav-text">RSS阅读器</view>
   </navigator>
   <navigator class="nav-item" url="/pages/tools/tools" open-type="redirect">
-    <view class="iconfont wx-gongju-">
+    <view class="iconfont wx-gongju-2">
     </view>
     <view class="nav-text">小工具</view>
   </navigator>

@@ -2,9 +2,9 @@
   font-family: "iconfont"; /* Project id 4220109 */
   /* Color fonts */
   src: 
-       url('//at.alicdn.com/t/c/font_4220109_57ibgl4tn9j.woff2?t=1692757300652') format('woff2'),
-       url('//at.alicdn.com/t/c/font_4220109_57ibgl4tn9j.woff?t=1692757300652') format('woff'),
-       url('//at.alicdn.com/t/c/font_4220109_57ibgl4tn9j.ttf?t=1692757300652') format('truetype');
+       url('//at.alicdn.com/t/c/font_4220109_ppynb0cj54p.woff2?t=1692857716767') format('woff2'),
+       url('//at.alicdn.com/t/c/font_4220109_ppynb0cj54p.woff?t=1692857716767') format('woff'),
+       url('//at.alicdn.com/t/c/font_4220109_ppynb0cj54p.ttf?t=1692857716767') format('truetype');
 }
 
 .iconfont {
@@ -63,7 +63,19 @@
   content: "\e60a";
 }
 
+.wx-abc2:before {
+  content: "\ea06";
+}
+
 .wx-guanyuwo:before {
+  content: "\ea07";
+}
+
+.wx-abc:before {
+  content: "\ea08";
+}
+
+.wx-guanyuwo2:before {
   content: "\e600";
 }
 
@@ -71,8 +83,12 @@
   content: "\e633";
 }
 
-.wx-abc:before {
-  content: "\e67f";
+.wx-gongju-2:before {
+  content: "\ea05";
+}
+
+.wx-rss2:before {
+  content: "\ea04";
 }
 
 .wx-rss:before {

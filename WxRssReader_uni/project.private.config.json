@@ -1,0 +1,8 @@
+{
+  "description": "预留测试",
+  "projectname": "WxRssReader",
+  "setting": {
+    "compileHotReLoad": true,
+    "urlCheck": true
+  }
+}

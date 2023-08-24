@@ -44,7 +44,7 @@
     <view class="nav-text">ANKI背单词</view>
   </navigator>
   <navigator class="nav-item" url="/pages/about/index" open-type="redirect">
-    <view class="iconfont wx-guanyuwo">
+    <view class="iconfont wx-guanyuwo2">
     </view>
     <view class="nav-text">我的</view>
   </navigator>

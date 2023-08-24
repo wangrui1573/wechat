@@ -1,0 +1,144 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.cover {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%; /* 切成圆形 */
+}
+
+.title {
+    font-size: 20px;
+    color: #333;
+}
+
+.button-group {
+    flex-direction: row;
+    display: flex;
+}
+
+.play-button,
+.pause-button {
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.play-button:hover,
+.pause-button:hover {
+    background-color: #0056b3;
+}
+/* ...之前的样式... */
+.page-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.popup-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: flex-start;
+    z-index: 999;
+    visibility: hidden; /* 隐藏初始状态 */
+}
+
+.popup.active {
+    visibility: visible; /* 显示 Popup */
+    transform: translateX(0);
+}
+
+.song-list {
+    margin-bottom: 20px;
+    max-height: 100%; /* 设置最大高度，防止内容溢出 */
+}
+
+.song-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.song-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.song-artist {
+    font-size: 14px;
+    color: #666;
+}
+
+.close-button {
+    background-color: #f2f2f2;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.popup-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: flex-start;
+    z-index: 999;
+}
+
+.popup {
+    background-color: white;
+    padding: 20px;
+    width: 50%;
+    height: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.popup.active {
+    transform: translateX(0);
+}
+
+.transparent-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998; /* 设置在弹出层下方，但高于主页面内容 */
+}
+
+.song-info {
+    font-size: 16px;
+    color: #333;
+    white-space: nowrap; /* 防止换行 */
+    overflow: hidden; /* 隐藏溢出内容 */
+    text-overflow: ellipsis; /* 超出部分显示省略号 */
+}

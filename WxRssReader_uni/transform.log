@@ -1,0 +1,247 @@
+开始转换……
+小程序路径:  D:\github\wechat\WxRssReader
+搜索到289个文件(含目录)，耗时：19ms
+
+开始分析文件
+分析文件信息完成，共84组数据
+开始转换文件组为vue文件
+
+[Tip]这里引用的全是网络字体，可能在app上面有兼容问题（如字体图标显示不出来，运行后没问题就不用管）  fileKey: dist/icon/index
+
+[Tip]这里引用的全是网络字体，可能在app上面有兼容问题（如字体图标显示不出来，运行后没问题就不用管）  fileKey: dist/index
+
+[ERROR]这个页面的js的结构写法无法解析(可能有语法问题)，请修复后再试。   fileKey: pages/rssManage/edit
+[ERROR]Page异常情况(建议把源代码修改为简单结构，如Page({})，再尝试转换)
+file:pages/rssManage/edit
+ // pages/rssManage/edit.js
+const Zan = require('../../dist/index');
+Page(Object.assign({}, Zan.Toast, {
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    isEdit: false,
+    title: "新增站点",
+    fields: {
+      url: {
+        title: 'Feed',
+        placeholder: '请输入Feed地址：https://rsshub.real9.cn/vgter
+
+[ERROR]这个页面的js的结构写法无法解析(可能有语法问题)，请修复后再试。   fileKey: pages/sample/actionsheet/index
+[ERROR]Page异常情况(建议把源代码修改为简单结构，如Page({})，再尝试转换)
+file:pages/sample/actionsheet/index
+ const {
+  Actionsheet,
+  extend
+} = require('../../../dist/index');
+Page(extend({}, Actionsheet, {
+  data: {
+    baseActionsheet: {
+      show: false,
+      cancelText: '关闭 Action',
+      closeOnClickOverlay: true,
+      componentId: 'baseActionsheet',
+      actions: [{
+        name: '选项
+
+[ERROR]这个页面的js的结构写法无法解析(可能有语法问题)，请修复后再试。   fileKey: pages/sample/cell/index
+[ERROR]Page异常情况(建议把源代码修改为简单结构，如Page({})，再尝试转换)
+file:pages/sample/cell/index
+ var Zan = require('../../../dist/index');
+Page(Object.assign({}, Zan.Switch, {
+  data: {
+    checked: false
+  },
+  onLoad() {},
+  onShow() {},
+  handleZanSwitchChange(e) {
+    this.setData({
+      checked: e.checked
+    });
+  }
+}));
+
+[ERROR]这个页面的js的结构写法无法解析(可能有语法问题)，请修复后再试。   fileKey: pages/sample/dialog/index
+[ERROR]Page异常情况(建议把源代码修改为简单结构，如Page({})，再尝试转换)
+file:pages/sample/dialog/index
+ const Zan = require('../../../dist/index');
+Page(Object.assign({}, Zan.Dialog, {
+  toggleBaseDialog() {
+    this.showZanDialog({
+      title: '弹窗',
+      content: '这是一个模态弹窗',
+      showCancel: true
+    }).then(() => {
+      console.log('=== dialog ===', 'type: confirm');
+    }).catch(() => 
+
+[ERROR]这个页面的js的结构写法无法解析(可能有语法问题)，请修复后再试。   fileKey: pages/sample/field/index
+[ERROR]Page异常情况(建议把源代码修改为简单结构，如Page({})，再尝试转换)
+file:pages/sample/field/index
+ const Zan = require('../../../dist/index');
+const config = require('./config');
+Page(Object.assign({}, Zan.Field, {
+  data: {
+    config,
+    value: 'test',
+    textareaValue: 'test textarea',
+    area: ['区域', '北京市', '天津市', '河北省', '山西省', '内蒙古自治区', '辽宁省', '吉林省', '黑龙江省', '上海市', '江苏省', '浙江省', '安
+
+[ERROR]这个页面的js的结构写法无法解析(可能有语法问题)，请修复后再试。   fileKey: pages/sample/noticebar/index
+[ERROR]Page异常情况(建议把源代码修改为简单结构，如Page({})，再尝试转换)
+file:pages/sample/noticebar/index
+ var Zan = require('../../../dist/index');
+Page(Object.assign({}, Zan.NoticeBar, {
+  data: {
+    movable: {
+      text: '足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。'
+    },
+    static1: {
+      text: '足协杯战线连续第2年上演广州德比战'
+    },
+    static2: {
+      text: '足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总
+
+[ERROR]这个页面的js的结构写法无法解析(可能有语法问题)，请修复后再试。   fileKey: pages/sample/select/index
+[ERROR]Page异常情况(建议把源代码修改为简单结构，如Page({})，再尝试转换)
+file:pages/sample/select/index
+ var Zan = require('../../../dist/index');
+Page(Object.assign({}, Zan.Select, Zan.TopTips, {
+  data: {
+    items: [{
+      padding: 0,
+      value: '1',
+      name: '选项一'
+    }, {
+      padding: 0,
+      value: '2',
+      name: '选项二'
+    }],
+    checked: {
+      base: -1,
+      color: -
+
+[ERROR]这个页面的js的结构写法无法解析(可能有语法问题)，请修复后再试。   fileKey: pages/sample/stepper/index
+[ERROR]Page异常情况(建议把源代码修改为简单结构，如Page({})，再尝试转换)
+file:pages/sample/stepper/index
+ var Zan = require('../../../dist/index');
+Page(Object.assign({}, Zan.Stepper, {
+  data: {
+    stepper1: {
+      stepper: 10,
+      min: 1,
+      max: 20
+    },
+    stepper2: {
+      stepper: 1,
+      min: 1,
+      max: 1
+    },
+    stepper3: {
+      stepper: 10,
+      min: 1,
+      m
+
+[ERROR]这个页面的js的结构写法无法解析(可能有语法问题)，请修复后再试。   fileKey: pages/sample/switch/index
+[ERROR]Page异常情况(建议把源代码修改为简单结构，如Page({})，再尝试转换)
+file:pages/sample/switch/index
+ var Zan = require('../../../dist/index');
+Page(Object.assign({}, Zan.Switch, {
+  data: {
+    sync: {
+      checked: false
+    },
+    async: {
+      checked: true,
+      loading: false
+    }
+  },
+  handleZanSwitchChange(e) {
+    var componentId = e.componentId;
+    var checked = e.checke
+
+[ERROR]这个页面的js的结构写法无法解析(可能有语法问题)，请修复后再试。   fileKey: pages/sample/tab/index
+[ERROR]Page异常情况(建议把源代码修改为简单结构，如Page({})，再尝试转换)
+file:pages/sample/tab/index
+ const {
+  Tab,
+  extend
+} = require('../../../dist/index');
+Page(extend({}, Tab, {
+  data: {
+    tab1: {
+      list: [{
+        id: 'all',
+        title: '全部'
+      }, {
+        id: 'topay',
+        title: '待付款'
+      }, {
+        id: 'tosend',
+        title: '待发货'
+      }, {
+      
+
+[ERROR]这个页面的js的结构写法无法解析(可能有语法问题)，请修复后再试。   fileKey: pages/sample/toast/index
+[ERROR]Page异常情况(建议把源代码修改为简单结构，如Page({})，再尝试转换)
+file:pages/sample/toast/index
+ const Zan = require('../../../dist/index');
+Page(Object.assign({}, Zan.Toast, {
+  data: {},
+  showToast() {
+    this.showZanToast('toast的内容');
+  },
+  showIconToast() {
+    this.showZanToast({
+      title: 'toast的内容',
+      icon: 'fail'
+    }, 1000);
+  },
+  showImageToast() {
+    this.sh
+
+[ERROR]这个页面的js的结构写法无法解析(可能有语法问题)，请修复后再试。   fileKey: pages/sample/toptips/index
+[ERROR]Page异常情况(建议把源代码修改为简单结构，如Page({})，再尝试转换)
+file:pages/sample/toptips/index
+ var Zan = require('../../../dist/index');
+Page(Object.assign({}, Zan.TopTips, {
+  data: {},
+  showTopTips() {
+    this.showZanTopTips('toptips的内容');
+  }
+}));
+
+[Tip]这里引用的全是网络字体，可能在app上面有兼容问题（如字体图标显示不出来，运行后没问题就不用管）  fileKey: styles/iconfont
+开始二次遍历及生成vue文件
+write pages.json success!
+write manifest.json success!
+write main.js success!
+write package.json success!
+
+
+统计信息：
+
+Component数量: 0
+Page数量: 42
+支付api数量: 0
+登录api数量: 0
+chooseMedia数量: 0
+getLocation数量: 0
+getRelationNodes数量: 0
+<ad/>数量: 0
+<map/>数量: 0
+<video/>数量: 1
+Vant组件: ， 数量：0
+
+项目转换完成！
+用时: 38.149s
+工具版本：v2.2.3
+在该小程序项目的同级目录可以看到_uni结尾的项目，即是转换好的uniapp项目，相关日志在该目录里。
+
+使用说明：
+    1.因各种原因，本工具并非100%完美转换！部分语法仍需人工处理！
+    2.工具转换原理及说明文档参考：https://l4rz4zwpx7.k.topthink.com/@kmrvzg72lx/
+    3.如遇运行报错，请添加QQ群(五群：536178289)带图反馈或https://github.com/zhangdaren/miniprogram-to-uniapp提交Issue！
+    4.转换后请查阅_uni目录或_uni-cli目录里的 README.md 和 transform.log
+
+

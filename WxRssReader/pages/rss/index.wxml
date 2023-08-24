@@ -14,7 +14,7 @@
 <!-- 底部导航栏 -->
 <view class="bottom-nav">
   <navigator class="nav-item" url="/pages/rss/index" open-type="redirect">
-    <view class="iconfont wx-rss">
+    <view class="iconfont wx-rss2">
     </view>
     <view class="nav-text">RSS阅读器</view>
   </navigator>

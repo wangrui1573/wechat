@@ -1,0 +1,28 @@
+/* pages/sub_scroll/sub_scroll.wxss */
+.container {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.scroll-text {
+    writing-mode: vertical-lr; /* 竖排文字 */
+    font-size: 60vw; /* 页面宽度的50%作为字号 */
+    text-orientation: sideways;
+    color: white;
+    white-space: nowrap;
+    animation: scroll 5s linear infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}

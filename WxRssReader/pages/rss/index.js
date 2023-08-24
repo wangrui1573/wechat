@@ -49,7 +49,6 @@ Page({
 
   },
 
-  
   showFetchingDataToast: function () {
     wx.showToast({
       title: '正在获取数据...',
@@ -65,7 +64,8 @@ Page({
     var remoteURL = wx.getStorageSync('remoterss_config');
   
     // 如果本地存储中有远程站点配置，则使用该配置作为 URL
-    var requestURL = remoteURL ? remoteURL : 'https://gist.githubusercontent.com/wangrui1573/72a5562a0499dd972dcdba1bb04888ce/raw/wx_rss.json';
+    // var requestURL = remoteURL ? remoteURL : 'https://gist.githubusercontent.com/wangrui1573/72a5562a0499dd972dcdba1bb04888ce/raw/wx_rss.json';
+    var requestURL = remoteURL ? remoteURL : '';
   
     wx.request({
       url: requestURL, // 使用动态的 URL
@@ -92,7 +92,7 @@ Page({
       fail: function () {
         thisData.hideToast();
         wx.showToast({
-          title: '数据获取失败',
+          title: '请配置站点',
           icon: 'none',
           duration: 1500,
         });
@@ -100,10 +100,6 @@ Page({
     });
   },
   
-
-  
-  
-
   updateList: function (sites) {
     var newData = this.data.list.slice();
     newData[0].content = sites.map(function (val, key) {
@@ -119,8 +115,6 @@ Page({
     wx.hideToast();
   },
 
-  
- 
    /**
     * 生命周期函数--监听页面初次渲染完成
     */
@@ -170,6 +164,4 @@ Page({
    
    }
 
-
-  
 });

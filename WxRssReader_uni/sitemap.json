@@ -1,7 +1,0 @@
-{
-  "desc": "预留测试",
-  "rules": [{
-  "action": "allow",
-  "page": "*"
-  }]
-}

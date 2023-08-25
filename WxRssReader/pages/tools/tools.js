@@ -1,23 +1,32 @@
 Page({
   data: {
-    tools: [
-      { name: 'IP计算器', icon: 'wx-duoIP', url: '/pages/ip/ip' },
-      { name: '手持弹幕', icon: 'wx-danmu', url: '/pages/sub/sub' },
-      // 添加更多工具...
-    ],
-    tools2: [
-      { name: '音乐', icon: 'wx-music', url: '/pages/music/music' },
-      { name: '教育', icon: 'wx-jiaoyu', url: '/pages/anki/anki_real' },
-      { name: '工具5', icon: 'wx-danmu', url: '/pages/anki/anki3?lesson=20' },
-      // 添加更多工具...
-    ],
-    tools3: [
-      { name: 'QB下载', icon: 'wx-qbittorrent', appid: 'wxb22773ad9e55876e', path: 'pages/server/server', extraData: { foo: 'bar' }, envVersion: 'release' },
-      { name: '数独', icon: 'wx-wode-shududaochu', appid: 'wx9b87be8614be1b5e', path: 'index', extraData: { foo: 'bar' }, envVersion: 'release' },
-
-    ]
+    tools: [],
+    tools2: [],
+    tools3: []
   },
 
+  onLoad: function () {
+    this.fetchData();
+  },
+
+  fetchData: function () {
+    wx.request({
+      url: 'https://gist.githubusercontent.com/wangrui1573/e430a00a0d259a8b3ed91c306a9985ff/raw/tool.json',
+      success: (res) => {
+        const remoteData = res.data;
+        console.log('Remote Data:', remoteData); // Debug output
+        this.setData({
+          tools: remoteData.tools,
+          tools2: remoteData.tools2,
+          tools3: remoteData.tools3
+        });
+      },
+      fail: (err) => {
+        console.error('获取远程数据失败', err);
+      }
+    });
+  },
+  
   openMiniProgram: function (event) {
     const index = event.currentTarget.dataset.index;
     const tool = this.data.tools3[index];

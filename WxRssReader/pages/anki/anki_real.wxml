@@ -3,11 +3,12 @@
   <text class="word">{{ currentWord.word }}</text>
   <text class="meaning" wx:if="{{ showMeaning }}">{{ currentWord.meaning }}</text>
 </view> -->
-
+<!-- 有图片的情况 -->
 <view wx:if="{{ currentWord.url1 }}" class="upper" bindtap="showMeaning" style="background-image: url({{ upperBgImage }}) ">
   <text wx:if="{{ !hideWord }}" class="word">{{ currentWord.word }}</text>
   <text class="meaning" wx:if="{{ showMeaning }}">{{ currentWord.meaning }}</text>
 </view>
+<!-- 没图片的情况 -->
 <view wx:else class="upper2" bindtap="showMeaning" style="background-image: url({{ upperBgImage }}) ">
   <text wx:if="{{ !hideWord }}" class="word2">{{ currentWord.word }}</text>
   <text class="meaning2" wx:if="{{ showMeaning }}">{{ currentWord.meaning }}</text>

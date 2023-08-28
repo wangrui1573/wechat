@@ -46,9 +46,10 @@ Page({
       url: 'https://db.real9.cn/real/lesson/2',
       success: (res) => {
         const remoteMusicData = res.data;
-        wx.setStorageSync('musicData', remoteMusicData);
+        const reversedMusicData = remoteMusicData.reverse(); // 倒叙排列
+        wx.setStorageSync('musicData', reversedMusicData);
         this.setData({
-          musicData: remoteMusicData
+          musicData: reversedMusicData
         });
         wx.showToast({
           title: '数据更新完成',

@@ -35,8 +35,10 @@
 }
 
 .word2 {
-  font-size: 8vh; /* vh 表示视口高度的百分比 */
-  white-space: normal; /* 自动换行 */
+  font-size: 8vh;
+  /* vh 表示视口高度的百分比 */
+  white-space: normal;
+  /* 自动换行 */
   /* word-wrap: break-word; 换行时断开单词 */
 }
 
@@ -75,7 +77,7 @@
   background-position: center;
 }
 
-.floating-button{
+.floating-button {
   position: fixed;
   bottom: 90vh;
   /* 距离底部的距离 */
@@ -86,7 +88,7 @@
 
 .word,
 .meaning {
-  background: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 15px #fff;
   position: absolute;
   font-size: 5vw;
@@ -101,21 +103,13 @@
   right: 0;
 }
 
-/* 
-.meaning {
-  margin-top: 3vh;
-  font-size: 2vh;
-  color: gray;
+.meaning2 {
   white-space: normal;
   position: absolute;
-  transform: translateY(-50%);
-  text-align: center; 
-  padding: 10rpx;
-  top: 15vw; 
-  left: 0;
-  right: 0;
- 
-} */
+  font-size: clamp(6vw, 10vw, 15vw);
+  text-align: center;
+  color: gray;
+}
 
 /* 下半部分按钮排列 */
 .lower {
@@ -206,18 +200,22 @@
 
 .floating-icon {
   position: fixed;
-  bottom: 25vh; /* 距离底部的距离 */
-  right: 4vw; /* 距离右侧的距离 */
+  bottom: 25vh;
+  /* 距离底部的距离 */
+  right: 4vw;
+  /* 距离右侧的距离 */
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer; /* 鼠标悬停时显示指针形状 */
+  cursor: pointer;
+  /* 鼠标悬停时显示指针形状 */
 }
 
 .icon {
   font-size: 40px;
   /* 设置图标的字体大小 */
 }
+
 .icon2 {
   font-size: 12px;
   /* 设置图标的字体大小 */

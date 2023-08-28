@@ -213,6 +213,11 @@ Page({
 
 //切换单词逻辑
 nextWord: function () {
+    // 隐藏单词含义
+    this.setData({
+      showMeaning: false,
+      hideWord: false
+    });
   // 过滤状态大于0的单词
   let wordArray = this.data.words.filter(word => word.status > 0);
   if (wordArray.length <= 1) {

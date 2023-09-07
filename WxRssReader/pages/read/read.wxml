@@ -1,6 +1,6 @@
 <view class="container">
   <view class="content">
-    <image class="cover" src="{{ musicData[currentMusicIndex].cover }}" style="transform: rotate({{ rotateDeg }}deg);"></image>
+<image class="rotate-image{{isRotating ? ' rotating' : ' not-rotating'}}" src="{{ musicData[currentMusicIndex].cover }}"></image>
     <view class="spacer60"></view>
     <text class="title">{{ musicData[currentMusicIndex].name }}</text>
   </view>

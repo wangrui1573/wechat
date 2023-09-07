@@ -13,11 +13,25 @@
     align-items: center;
     gap: 10px;
   }
-  
-  .cover {
+  .rotate-image {
     width: 250px;
     height: 250px;
     border-radius: 50%; /* 切成圆形 */
+    animation: rotate 5s linear infinite; /* 5s 表示旋转一周的时间，linear 表示匀速，infinite 表示无限循环 */
+  }
+  
+  .not-rotating {
+    /* 不应用旋转动画样式 */
+    animation: none;
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
   
   .title {
